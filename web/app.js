@@ -17,7 +17,8 @@ const state = {
   autoNextOnPoint: true,
   timerSeconds: 0,
   timerCurrent: 0,
-  timerInterval: null
+  timerInterval: null,
+  instanceId: ''
 };
 
 // Layout templates for 8 symbols inside circle (normalized 0-100%)
@@ -101,11 +102,58 @@ const el = {
   victoryDetail: document.getElementById('victory-detail'),
   btnRematch: document.getElementById('btn-rematch'),
   btnCloseVictory: document.getElementById('btn-close-victory'),
-  confettiContainer: document.getElementById('confetti-container')
+  confettiContainer: document.getElementById('confetti-container'),
+  instanceTag: document.getElementById('instance-tag'),
+  btnQr: document.getElementById('btn-qr'),
+  qrModal: document.getElementById('qr-modal'),
+  btnCloseQr: document.getElementById('btn-close-qr'),
+  btnCopyLink: document.getElementById('btn-copy-link'),
+  btnNewInstance: document.getElementById('btn-new-instance'),
+  copyToast: document.getElementById('copy-toast')
 };
+
+// --- Unique Instance Management ---
+function generateInstanceId() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  for (let i = 0; i < 4; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return 'CHIBI-' + code;
+}
+
+function initInstance() {
+  const hash = window.location.hash.replace('#', '').trim();
+  if (hash.startsWith('room=')) {
+    state.instanceId = hash.replace('room=', '');
+  } else if (!state.instanceId) {
+    state.instanceId = generateInstanceId();
+    try {
+      history.replaceState(null, '', `#room=${state.instanceId}`);
+    } catch (_) {}
+  }
+  if (el.instanceTag) {
+    el.instanceTag.textContent = `Room #${state.instanceId}`;
+  }
+}
+
+function createNewInstance() {
+  state.instanceId = generateInstanceId();
+  try {
+    history.replaceState(null, '', `#room=${state.instanceId}`);
+  } catch (_) {}
+  if (el.instanceTag) {
+    el.instanceTag.textContent = `Room #${state.instanceId}`;
+  }
+  resetScores();
+  if (state.sfxEnabled) {
+    soundEngine.playScoreBeep();
+  }
+}
 
 // --- Initialization ---
 function init() {
+  initInstance();
   setupEventListeners();
   populateEncyclopedia();
   dealNewRound();
@@ -473,6 +521,53 @@ function setupEventListeners() {
   el.btnSettings.addEventListener('click', () => el.settingsModal.classList.remove('hidden'));
   el.btnCloseSettings.addEventListener('click', () => el.settingsModal.classList.add('hidden'));
 
+  // QR Modal
+  if (el.btnQr && el.qrModal) {
+    el.btnQr.addEventListener('click', () => {
+      soundEngine.ensureContext();
+      el.qrModal.classList.remove('hidden');
+    });
+  }
+
+  if (el.btnCloseQr && el.qrModal) {
+    el.btnCloseQr.addEventListener('click', () => {
+      el.qrModal.classList.add('hidden');
+    });
+  }
+
+  if (el.btnCopyLink) {
+    el.btnCopyLink.addEventListener('click', () => {
+      soundEngine.ensureContext();
+      const shareUrl = 'https://spotthechibi.vercel.app' + (state.instanceId ? `#room=${state.instanceId}` : '');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          showCopyToast('✓ Game Link copied to clipboard!');
+        }).catch(() => {
+          prompt('Copy this link:', shareUrl);
+        });
+      } else {
+        prompt('Copy this link:', shareUrl);
+      }
+    });
+  }
+
+  if (el.btnNewInstance) {
+    el.btnNewInstance.addEventListener('click', () => {
+      soundEngine.ensureContext();
+      createNewInstance();
+      showCopyToast(`✓ Started new instance #${state.instanceId}!`);
+    });
+  }
+
+  function showCopyToast(msg) {
+    if (!el.copyToast) return;
+    el.copyToast.textContent = msg;
+    el.copyToast.classList.remove('hidden');
+    setTimeout(() => {
+      el.copyToast.classList.add('hidden');
+    }, 2500);
+  }
+
   el.btnRematch.addEventListener('click', () => {
     el.victoryModal.classList.add('hidden');
     resetScores();
@@ -483,10 +578,12 @@ function setupEventListeners() {
   });
 
   // Close modals on background click
-  [el.rulesModal, el.settingsModal, el.victoryModal].forEach(modal => {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.add('hidden');
-    });
+  [el.rulesModal, el.settingsModal, el.victoryModal, el.qrModal].forEach(modal => {
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
+      });
+    }
   });
 
   // Settings inputs
