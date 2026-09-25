@@ -1,7 +1,14 @@
 // Mathematically generated projective plane PG(2, 7)
 // 57 cards, 57 symbols, 8 symbols/card, exactly 1 common symbol between every pair.
 
-export const ANIMALS = [
+export const THEMES = {
+  animals: {
+    id: 'animals',
+    name: '🐾 Chibi Animals',
+    folder: 'animals',
+    mascot: 'animals/panda.png',
+    title: 'SPOT THE CHIBI!',
+    symbols: [
   {
     "slug": "cat",
     "name": "Cat"
@@ -230,7 +237,485 @@ export const ANIMALS = [
     "slug": "gorilla",
     "name": "Gorilla"
   }
-];
+]
+  },
+  food: {
+    id: 'food',
+    name: '🍕 Food & Snacks',
+    folder: 'food',
+    mascot: 'food/pizza.png',
+    title: 'SPOT THE SNACK!',
+    symbols: [
+  {
+    "slug": "pizza",
+    "name": "Pizza"
+  },
+  {
+    "slug": "burger",
+    "name": "Burger"
+  },
+  {
+    "slug": "taco",
+    "name": "Taco"
+  },
+  {
+    "slug": "burrito",
+    "name": "Burrito"
+  },
+  {
+    "slug": "fries",
+    "name": "Fries"
+  },
+  {
+    "slug": "hot_dog",
+    "name": "Hot Dog"
+  },
+  {
+    "slug": "sandwich",
+    "name": "Sandwich"
+  },
+  {
+    "slug": "popcorn",
+    "name": "Popcorn"
+  },
+  {
+    "slug": "donut",
+    "name": "Donut"
+  },
+  {
+    "slug": "cookie",
+    "name": "Cookie"
+  },
+  {
+    "slug": "cupcake",
+    "name": "Cupcake"
+  },
+  {
+    "slug": "cake",
+    "name": "Cake"
+  },
+  {
+    "slug": "pie",
+    "name": "Pie"
+  },
+  {
+    "slug": "ice_cream",
+    "name": "Ice Cream"
+  },
+  {
+    "slug": "soft_ice_cream",
+    "name": "Soft Serve"
+  },
+  {
+    "slug": "waffle",
+    "name": "Waffle"
+  },
+  {
+    "slug": "pancake",
+    "name": "Pancakes"
+  },
+  {
+    "slug": "croissant",
+    "name": "Croissant"
+  },
+  {
+    "slug": "bagel",
+    "name": "Bagel"
+  },
+  {
+    "slug": "bread",
+    "name": "Bread"
+  },
+  {
+    "slug": "pretzel",
+    "name": "Pretzel"
+  },
+  {
+    "slug": "cheese",
+    "name": "Cheese"
+  },
+  {
+    "slug": "bacon",
+    "name": "Bacon"
+  },
+  {
+    "slug": "steak",
+    "name": "Steak"
+  },
+  {
+    "slug": "drumstick",
+    "name": "Drumstick"
+  },
+  {
+    "slug": "egg",
+    "name": "Egg"
+  },
+  {
+    "slug": "avocado",
+    "name": "Avocado"
+  },
+  {
+    "slug": "bento",
+    "name": "Bento Box"
+  },
+  {
+    "slug": "dumpling",
+    "name": "Dumpling"
+  },
+  {
+    "slug": "fortune_cookie",
+    "name": "Fortune Cookie"
+  },
+  {
+    "slug": "ramen",
+    "name": "Ramen"
+  },
+  {
+    "slug": "curry",
+    "name": "Curry"
+  },
+  {
+    "slug": "spaghetti",
+    "name": "Spaghetti"
+  },
+  {
+    "slug": "candy",
+    "name": "Candy"
+  },
+  {
+    "slug": "lollipop",
+    "name": "Lollipop"
+  },
+  {
+    "slug": "chocolate",
+    "name": "Chocolate"
+  },
+  {
+    "slug": "boba",
+    "name": "Boba Tea"
+  },
+  {
+    "slug": "coffee",
+    "name": "Coffee"
+  },
+  {
+    "slug": "juice",
+    "name": "Juice Box"
+  },
+  {
+    "slug": "cocktail",
+    "name": "Cocktail"
+  },
+  {
+    "slug": "tropical_drink",
+    "name": "Tropical Drink"
+  },
+  {
+    "slug": "beer",
+    "name": "Beer Mug"
+  },
+  {
+    "slug": "wine",
+    "name": "Wine Glass"
+  },
+  {
+    "slug": "banana",
+    "name": "Banana"
+  },
+  {
+    "slug": "apple",
+    "name": "Apple"
+  },
+  {
+    "slug": "watermelon",
+    "name": "Watermelon"
+  },
+  {
+    "slug": "grapes",
+    "name": "Grapes"
+  },
+  {
+    "slug": "strawberry",
+    "name": "Strawberry"
+  },
+  {
+    "slug": "cherries",
+    "name": "Cherries"
+  },
+  {
+    "slug": "peach",
+    "name": "Peach"
+  },
+  {
+    "slug": "mango",
+    "name": "Mango"
+  },
+  {
+    "slug": "pineapple",
+    "name": "Pineapple"
+  },
+  {
+    "slug": "coconut",
+    "name": "Coconut"
+  },
+  {
+    "slug": "tomato",
+    "name": "Tomato"
+  },
+  {
+    "slug": "corn",
+    "name": "Corn"
+  },
+  {
+    "slug": "mushroom",
+    "name": "Mushroom"
+  },
+  {
+    "slug": "peanuts",
+    "name": "Peanuts"
+  }
+]
+  },
+  heroes: {
+    id: 'heroes',
+    name: '🦸 Superheroes',
+    folder: 'heroes',
+    mascot: 'heroes/shield.png',
+    title: 'SPOT THE HERO!',
+    symbols: [
+  {
+    "slug": "lightning",
+    "name": "Lightning Bolt"
+  },
+  {
+    "slug": "shield",
+    "name": "Hero Shield"
+  },
+  {
+    "slug": "swords",
+    "name": "Crossed Swords"
+  },
+  {
+    "slug": "hammer",
+    "name": "Thor Hammer"
+  },
+  {
+    "slug": "boomerang",
+    "name": "Batarang"
+  },
+  {
+    "slug": "bow_arrow",
+    "name": "Bow & Arrow"
+  },
+  {
+    "slug": "spider_web",
+    "name": "Spider Web"
+  },
+  {
+    "slug": "spider",
+    "name": "Spider"
+  },
+  {
+    "slug": "bat",
+    "name": "Bat Wing"
+  },
+  {
+    "slug": "skull_crossbones",
+    "name": "Skull Crossbones"
+  },
+  {
+    "slug": "alien_monster",
+    "name": "Venom Monster"
+  },
+  {
+    "slug": "alien",
+    "name": "Alien Hero"
+  },
+  {
+    "slug": "robot",
+    "name": "Cyborg Robot"
+  },
+  {
+    "slug": "collision",
+    "name": "POW Burst"
+  },
+  {
+    "slug": "bomb",
+    "name": "Goblin Bomb"
+  },
+  {
+    "slug": "fire",
+    "name": "Fire Flame"
+  },
+  {
+    "slug": "heart_fire",
+    "name": "Arc Reactor"
+  },
+  {
+    "slug": "crown",
+    "name": "Golden Crown"
+  },
+  {
+    "slug": "gem",
+    "name": "Infinity Gem"
+  },
+  {
+    "slug": "ring",
+    "name": "Power Ring"
+  },
+  {
+    "slug": "magic_wand",
+    "name": "Magic Wand"
+  },
+  {
+    "slug": "crystal_ball",
+    "name": "Crystal Orb"
+  },
+  {
+    "slug": "ufo",
+    "name": "Flying Saucer"
+  },
+  {
+    "slug": "rocket",
+    "name": "Space Rocket"
+  },
+  {
+    "slug": "satellite",
+    "name": "Watchtower Satellite"
+  },
+  {
+    "slug": "radio",
+    "name": "Comms Radio"
+  },
+  {
+    "slug": "megaphone",
+    "name": "Megaphone"
+  },
+  {
+    "slug": "flashlight",
+    "name": "Bat Signal"
+  },
+  {
+    "slug": "battery",
+    "name": "Energy Cell"
+  },
+  {
+    "slug": "magnet",
+    "name": "Magnet Force"
+  },
+  {
+    "slug": "bullseye",
+    "name": "Target Bullseye"
+  },
+  {
+    "slug": "boxing_glove",
+    "name": "Hero Punch"
+  },
+  {
+    "slug": "military_helmet",
+    "name": "Battle Helmet"
+  },
+  {
+    "slug": "sunglasses",
+    "name": "Hero Shades"
+  },
+  {
+    "slug": "goggles",
+    "name": "Stealth Goggles"
+  },
+  {
+    "slug": "disguised_face",
+    "name": "Secret Identity"
+  },
+  {
+    "slug": "ghost",
+    "name": "Phantom Ghost"
+  },
+  {
+    "slug": "dragon",
+    "name": "Mythic Dragon"
+  },
+  {
+    "slug": "dragon_face",
+    "name": "Dragon Emblem"
+  },
+  {
+    "slug": "ogre",
+    "name": "Hulk Beast"
+  },
+  {
+    "slug": "goblin",
+    "name": "Green Goblin"
+  },
+  {
+    "slug": "biohazard",
+    "name": "Mutagen Ooze"
+  },
+  {
+    "slug": "radioactive",
+    "name": "Radioactive Hazard"
+  },
+  {
+    "slug": "exploding_head",
+    "name": "Mind Blast"
+  },
+  {
+    "slug": "comet",
+    "name": "Cosmic Comet"
+  },
+  {
+    "slug": "glowing_star",
+    "name": "Cosmic Star"
+  },
+  {
+    "slug": "sparkles",
+    "name": "Magic Sparkles"
+  },
+  {
+    "slug": "medal",
+    "name": "Hero Medal"
+  },
+  {
+    "slug": "trophy",
+    "name": "Champion Trophy"
+  },
+  {
+    "slug": "key",
+    "name": "City Key"
+  },
+  {
+    "slug": "locked",
+    "name": "Arkham Vault"
+  },
+  {
+    "slug": "compass",
+    "name": "Hero Compass"
+  },
+  {
+    "slug": "hourglass",
+    "name": "Time Stone"
+  },
+  {
+    "slug": "stopwatch",
+    "name": "Speed Stopwatch"
+  },
+  {
+    "slug": "microscope",
+    "name": "Lab Microscope"
+  },
+  {
+    "slug": "test_tube",
+    "name": "Super Serum"
+  },
+  {
+    "slug": "dagger",
+    "name": "Assassin Dagger"
+  }
+]
+  }
+};
+
+export const ANIMALS = THEMES.animals.symbols;
 
 export const CARDS = [
   [
@@ -813,3 +1298,4 @@ export function getSharedSymbol(cardIdx1, cardIdx2) {
   }
   return -1;
 }
+

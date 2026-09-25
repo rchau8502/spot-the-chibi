@@ -1,4 +1,4 @@
-import { ANIMALS, CARDS, getSharedSymbol } from './cards.js';
+import { THEMES, ANIMALS, CARDS, getSharedSymbol } from './cards.js';
 import { soundEngine } from './audio.js';
 
 // --- Game State ---
@@ -18,7 +18,8 @@ const state = {
   timerSeconds: 0,
   timerCurrent: 0,
   timerInterval: null,
-  instanceId: ''
+  instanceId: '',
+  currentTheme: localStorage.getItem('chibi_theme') || 'animals'
 };
 
 // Layout templates for 8 symbols inside circle (normalized 0-100%)
@@ -109,8 +110,33 @@ const el = {
   btnCloseQr: document.getElementById('btn-close-qr'),
   btnCopyLink: document.getElementById('btn-copy-link'),
   btnNewInstance: document.getElementById('btn-new-instance'),
-  copyToast: document.getElementById('copy-toast')
+  copyToast: document.getElementById('copy-toast'),
+  themeSelect: document.getElementById('theme-select'),
+  logoMascot: document.getElementById('logo-mascot'),
+  logoTitle: document.getElementById('logo-title'),
+  rulesTitle: document.getElementById('rules-title'),
+  rulesGoldenText: document.getElementById('rules-golden-text'),
+  encyclopediaTitle: document.getElementById('encyclopedia-title')
 };
+
+// --- Theme Management ---
+function getCurrentTheme() {
+  return THEMES[state.currentTheme] || THEMES.animals;
+}
+
+function updateThemeUI() {
+  const theme = getCurrentTheme();
+  if (el.themeSelect) el.themeSelect.value = state.currentTheme;
+  if (el.logoMascot) el.logoMascot.src = theme.mascot;
+  if (el.logoTitle) el.logoTitle.textContent = theme.title;
+  if (el.rulesTitle) el.rulesTitle.textContent = `📖 Game Rules & 57 Symbols (${theme.name})`;
+  if (el.rulesGoldenText) {
+    el.rulesGoldenText.innerHTML = `Between <strong>any two cards</strong> in the entire 57-card deck, there is <strong>always exactly ONE shared symbol</strong>. Spot it first to score!`;
+  }
+  if (el.encyclopediaTitle) {
+    el.encyclopediaTitle.textContent = `All 57 ${theme.name} (Visual Dictionary)`;
+  }
+}
 
 // --- Unique Instance Management ---
 function generateInstanceId() {
@@ -154,6 +180,7 @@ function createNewInstance() {
 // --- Initialization ---
 function init() {
   initInstance();
+  updateThemeUI();
   setupEventListeners();
   populateEncyclopedia();
   dealNewRound();
@@ -225,8 +252,10 @@ function renderCard(cardEl, symbolList, cardSide) {
   // Shuffle symbols mapping to layout slots
   const shuffled = [...symbolList].sort(() => Math.random() - 0.5);
 
+  const theme = getCurrentTheme();
+
   shuffled.forEach((symIdx, i) => {
-    const animal = ANIMALS[symIdx];
+    const symbol = theme.symbols[symIdx];
     const pos = layout[i];
 
     const item = document.createElement('div');
@@ -241,8 +270,8 @@ function renderCard(cardEl, symbolList, cardSide) {
     item.style.transform = `translate(-50%, -50%) rotate(${pos.rot}deg)`;
 
     const img = document.createElement('img');
-    img.src = `animals/${animal.slug}.png`;
-    img.alt = animal.name;
+    img.src = `${theme.folder}/${symbol.slug}.png`;
+    img.alt = symbol.name;
     img.loading = 'eager';
 
     item.appendChild(img);
@@ -282,9 +311,10 @@ function revealMatch() {
   if (state.isRevealed) return;
   state.isRevealed = true;
 
-  const matchAnimal = ANIMALS[state.sharedSymbol];
-  el.revealName.textContent = matchAnimal.name;
-  el.revealImg.src = `animals/${matchAnimal.slug}.png`;
+  const theme = getCurrentTheme();
+  const matchSymbol = theme.symbols[state.sharedSymbol];
+  el.revealName.textContent = matchSymbol.name;
+  el.revealImg.src = `${theme.folder}/${matchSymbol.slug}.png`;
   el.revealBanner.classList.remove('hidden');
 
   // Highlight on both cards
@@ -442,12 +472,13 @@ function fireConfetti() {
 
 // --- Encyclopedia Population ---
 function populateEncyclopedia() {
+  const theme = getCurrentTheme();
   el.encyclopediaGrid.innerHTML = '';
-  ANIMALS.forEach((a, i) => {
+  theme.symbols.forEach((a, i) => {
     const card = document.createElement('div');
     card.className = 'encyclopedia-item';
     card.innerHTML = `
-      <img src="animals/${a.slug}.png" alt="${a.name}" loading="lazy">
+      <img src="${theme.folder}/${a.slug}.png" alt="${a.name}" loading="lazy">
       <span>#${i + 1} ${a.name}</span>
     `;
     el.encyclopediaGrid.appendChild(card);
@@ -456,6 +487,32 @@ function populateEncyclopedia() {
 
 // --- Event Listeners & Shortcuts ---
 function setupEventListeners() {
+  // Theme Switcher
+  if (el.themeSelect) {
+    el.themeSelect.value = state.currentTheme;
+    el.themeSelect.addEventListener('change', (e) => {
+      soundEngine.ensureContext();
+      state.currentTheme = e.target.value;
+      try {
+        localStorage.setItem('chibi_theme', state.currentTheme);
+      } catch (_) {}
+      updateThemeUI();
+      populateEncyclopedia();
+      // Re-render current round cards with new theme symbols
+      renderCard(el.cardLeft, CARDS[state.currentCard1], 0);
+      renderCard(el.cardRight, CARDS[state.currentCard2], 1);
+      if (state.isRevealed) {
+        const theme = getCurrentTheme();
+        const matchSym = theme.symbols[state.sharedSymbol];
+        el.revealName.textContent = matchSym.name;
+        el.revealImg.src = `${theme.folder}/${matchSym.slug}.png`;
+      }
+      if (state.sfxEnabled) {
+        soundEngine.playScoreBeep();
+      }
+    });
+  }
+
   // Manual Winner Buttons
   el.btnWinP1.addEventListener('click', () => {
     soundEngine.ensureContext();

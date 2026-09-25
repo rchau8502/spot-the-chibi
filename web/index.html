@@ -17,17 +17,26 @@
   <!-- Top Navigation Bar -->
   <header class="app-header">
     <div class="logo-area">
-      <img src="animals/panda.png" alt="Mascot" class="logo-icon">
+      <img src="animals/panda.png" alt="Mascot" class="logo-icon" id="logo-mascot">
       <div class="logo-text">
-        <h1 class="logo-title">SPOT THE CHIBI!</h1>
-        <span class="logo-tag">57 Cards • 8 Animals/Card</span>
+        <h1 class="logo-title" id="logo-title">SPOT THE CHIBI!</h1>
+        <span class="logo-tag" id="logo-tag">57 Cards • 8 Symbols/Card</span>
       </div>
     </div>
 
     <div class="header-controls">
+      <!-- Theme Switcher -->
+      <div class="theme-picker" title="Switch Theme (Animals / Food / Superheroes)">
+        <select id="theme-select" class="theme-select-input" aria-label="Select Game Theme">
+          <option value="animals" selected>🐾 Animals</option>
+          <option value="food">🍕 Food</option>
+          <option value="heroes">🦸 Heroes</option>
+        </select>
+      </div>
+
       <!-- QR Code Button (Only shows QR code when clicked) -->
       <button id="btn-qr" class="pill-btn qr-trigger-btn" title="Show QR Code to scan with phone camera" aria-label="Show QR Code">
-        <span class="btn-emoji">📱</span> Show QR Code
+        <span class="btn-emoji">📱</span> <span class="btn-text">QR</span>
       </button>
 
       <!-- Music Button with Soundwave Bars -->
@@ -38,7 +47,7 @@
           <span class="bar"></span>
           <span class="bar"></span>
         </div>
-        <span id="music-text">Music: OFF</span>
+        <span id="music-text" class="btn-text">Music: OFF</span>
       </button>
 
       <!-- SFX Button -->
@@ -46,9 +55,9 @@
         <span id="sfx-icon">🔊</span>
       </button>
 
-      <!-- Rules / Encyclopedia Modal Trigger -->
-      <button id="btn-rules" class="pill-btn" title="Game Rules & Animal Guide">
-        📖 Rules
+      <!-- Rules / Guide Modal Trigger -->
+      <button id="btn-rules" class="pill-btn" title="Game Rules & Symbol Guide">
+        📖 <span class="btn-text">Rules</span>
       </button>
 
       <!-- Settings Trigger -->
@@ -198,17 +207,17 @@
   <div id="rules-modal" class="modal-backdrop hidden">
     <div class="modal-card wide-card">
       <div class="modal-header">
-        <h2>📖 Game Rules & 57 Chibi Animals</h2>
+        <h2 id="rules-title">📖 Game Rules & 57 Symbols</h2>
         <button class="modal-close" id="btn-close-rules">✕</button>
       </div>
       <div class="modal-body">
         <div class="rules-summary-box">
           <h3>The Golden Rule</h3>
-          <p>Between <strong>any two cards</strong> in the entire 57-card deck, there is <strong>always exactly ONE shared animal</strong> (same species and color, though size and orientation vary!). Spot it first to score!</p>
+          <p id="rules-golden-text">Between <strong>any two cards</strong> in the entire 57-card deck, there is <strong>always exactly ONE shared symbol</strong> (same species/item and color, though size and orientation vary!). Spot it first to score!</p>
         </div>
 
-        <h3 class="section-title">All 57 Chibi Animals (Visual Dictionary)</h3>
-        <p class="section-sub">Need to settle a disputed animal name during the game? Check here:</p>
+        <h3 class="section-title" id="encyclopedia-title">All 57 Symbols (Visual Dictionary)</h3>
+        <p class="section-sub">Need to settle a disputed symbol name during the game? Check here:</p>
         <div id="encyclopedia-grid" class="encyclopedia-grid">
           <!-- Injected via JS -->
         </div>
