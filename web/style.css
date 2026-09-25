@@ -160,6 +160,11 @@ body {
   font-size: 1rem;
 }
 
+.music-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
 /* Sound Wave Bars Animation (Kahoot feel) */
 .sound-bars {
   display: flex;
@@ -876,51 +881,89 @@ body {
 
 @media (max-width: 640px) {
   .app-header {
-    padding: 6px 12px;
+    padding: 6px 10px;
     padding-top: max(6px, env(safe-area-inset-top));
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+  .logo-area {
     gap: 6px;
+    flex-shrink: 1;
+    min-width: 0;
   }
   .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
   }
   .logo-title {
-    font-size: 1.05rem;
+    font-size: clamp(0.72rem, 3.2vw, 0.84rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -0.25px;
+    font-weight: 800;
   }
   .logo-tag {
     display: none;
   }
+  .header-controls {
+    gap: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  #btn-sfx, #btn-rules, #btn-fullscreen {
+    display: none !important;
+  }
+  #btn-music .sound-bars {
+    display: none !important;
+  }
+  .music-icon {
+    font-size: 1.05rem;
+  }
   .theme-select-input {
-    font-size: 0.78rem;
-    padding: 5px 8px;
+    font-size: 0.75rem;
+    padding: 5px 6px;
+    border-radius: 999px;
   }
   .pill-btn {
-    padding: 6px 8px;
-    font-size: 0.85rem;
+    padding: 5px 8px;
+    font-size: 0.82rem;
     gap: 4px;
+    border-radius: 999px;
   }
   .pill-btn .btn-text {
     display: none;
   }
   
   .game-container {
-    padding: 6px 10px max(6px, env(safe-area-inset-bottom));
-    gap: 6px;
+    padding: 8px 12px max(14px, env(safe-area-inset-bottom));
+    gap: clamp(8px, 2.2vh, 16px);
     min-height: calc(100dvh - 54px);
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly !important;
+    max-width: 440px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .scoreboard {
-    padding: 6px 10px;
+    width: 100%;
+    padding: 6px 12px;
     gap: 6px;
     border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   }
   .player-panel {
     padding: 2px 4px;
   }
   .player-name-input {
     font-size: 0.85rem;
-    max-width: 68px;
+    max-width: 70px;
     padding: 1px 2px;
   }
   .key-hint {
@@ -949,8 +992,10 @@ body {
   }
 
   .reveal-banner {
-    padding: 6px 12px;
+    padding: 6px 14px;
     margin: 2px 0;
+    width: 100%;
+    max-width: 380px;
   }
   .reveal-text {
     font-size: 0.85rem;
@@ -962,21 +1007,28 @@ body {
 
   /* Cards Arena: KEEP SIDE BY SIDE ALWAYS! */
   .cards-arena {
+    display: flex !important;
     flex-direction: row !important;
     justify-content: center !important;
+    align-items: center !important;
     gap: 8px !important;
-    margin: 4px 0 !important;
+    margin: 2px 0 !important;
+    width: 100% !important;
   }
   .card-column {
     gap: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .card-tag {
     font-size: 0.68rem;
     padding: 2px 8px;
+    border-radius: 999px;
   }
   .circular-card {
-    width: min(44vw, 172px) !important;
-    height: min(44vw, 172px) !important;
+    width: min(44vw, 175px) !important;
+    height: min(44vw, 175px) !important;
     border-width: 2.5px !important;
     box-shadow: 0 8px 18px -4px rgba(30, 41, 59, 0.15) !important;
   }
@@ -995,7 +1047,9 @@ body {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 8px !important;
-    margin-top: 2px !important;
+    margin-top: 4px !important;
+    width: 100% !important;
+    max-width: 380px !important;
   }
   .center-actions {
     grid-column: 1 / -1 !important;
@@ -1006,10 +1060,11 @@ body {
   }
   .center-actions .dock-btn {
     flex: 1 !important;
-    padding: 8px 10px !important;
+    padding: 9px 10px !important;
     font-size: 0.85rem !important;
     border-radius: 12px !important;
     gap: 6px !important;
+    justify-content: center !important;
   }
   .center-actions .btn-shortcut {
     display: none !important;
@@ -1021,6 +1076,7 @@ body {
     border-radius: 16px !important;
     gap: 6px !important;
     justify-content: center !important;
+    min-height: 48px !important;
   }
   .p2-win-btn {
     grid-column: 2 !important;
@@ -1029,6 +1085,7 @@ body {
     border-radius: 16px !important;
     gap: 6px !important;
     justify-content: center !important;
+    min-height: 48px !important;
   }
   .win-btn .btn-text-group {
     text-align: center !important;
@@ -1047,7 +1104,7 @@ body {
   }
 
   .game-footer {
-    display: none !important; /* Hide long footer on mobile to guarantee zero-scroll viewport fit */
+    display: none !important; /* Hide footer on mobile to ensure compact fit */
   }
 }
 

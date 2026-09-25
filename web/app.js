@@ -116,7 +116,9 @@ const el = {
   logoTitle: document.getElementById('logo-title'),
   rulesTitle: document.getElementById('rules-title'),
   rulesGoldenText: document.getElementById('rules-golden-text'),
-  encyclopediaTitle: document.getElementById('encyclopedia-title')
+  encyclopediaTitle: document.getElementById('encyclopedia-title'),
+  settingSfxCheck: document.getElementById('setting-sfx-check'),
+  btnOpenRulesSettings: document.getElementById('btn-open-rules-settings')
 };
 
 // --- Theme Management ---
@@ -558,7 +560,15 @@ function setupEventListeners() {
   el.btnSfx.addEventListener('click', () => {
     state.sfxEnabled = !state.sfxEnabled;
     el.sfxIcon.textContent = state.sfxEnabled ? '🔊' : '🔇';
+    if (el.settingSfxCheck) el.settingSfxCheck.checked = state.sfxEnabled;
   });
+
+  if (el.settingSfxCheck) {
+    el.settingSfxCheck.addEventListener('change', (e) => {
+      state.sfxEnabled = e.target.checked;
+      el.sfxIcon.textContent = state.sfxEnabled ? '🔊' : '🔇';
+    });
+  }
 
   // Player Name Inputs
   el.p1Name.addEventListener('input', (e) => {
@@ -575,7 +585,17 @@ function setupEventListeners() {
   el.btnRules.addEventListener('click', () => el.rulesModal.classList.remove('hidden'));
   el.btnCloseRules.addEventListener('click', () => el.rulesModal.classList.add('hidden'));
 
-  el.btnSettings.addEventListener('click', () => el.settingsModal.classList.remove('hidden'));
+  if (el.btnOpenRulesSettings) {
+    el.btnOpenRulesSettings.addEventListener('click', () => {
+      el.settingsModal.classList.add('hidden');
+      el.rulesModal.classList.remove('hidden');
+    });
+  }
+
+  el.btnSettings.addEventListener('click', () => {
+    if (el.settingSfxCheck) el.settingSfxCheck.checked = state.sfxEnabled;
+    el.settingsModal.classList.remove('hidden');
+  });
   el.btnCloseSettings.addEventListener('click', () => el.settingsModal.classList.add('hidden'));
 
   // QR Modal
