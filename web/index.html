@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Chibi Animal Spot It! • Online Party Game</title>
+  <meta name="description" content="Play the 57-card chibi animal matching game online! 8 symbols per card, exactly 1 match between every pair.">
+  <link rel="icon" href="animals/panda.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="confetti-container"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="app-header">
+    <div class="logo-area">
+      <img src="animals/panda.png" alt="Mascot" class="logo-icon">
+      <div class="logo-text">
+        <h1 class="logo-title">SPOT THE CHIBI!</h1>
+        <span class="logo-tag">57 Cards • 8 Animals/Card</span>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <!-- Music Button with Soundwave Bars -->
+      <button id="btn-music" class="pill-btn music-btn" title="Toggle Kahoot-Style Background Music" aria-label="Toggle Background Music">
+        <div class="sound-bars" id="music-bars">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <span id="music-text">Music: OFF</span>
+      </button>
+
+      <!-- SFX Button -->
+      <button id="btn-sfx" class="pill-btn icon-only" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+        <span id="sfx-icon">🔊</span>
+      </button>
+
+      <!-- Rules / Encyclopedia Modal Trigger -->
+      <button id="btn-rules" class="pill-btn" title="Game Rules & Animal Guide">
+        📖 Rules
+      </button>
+
+      <!-- Settings Trigger -->
+      <button id="btn-settings" class="pill-btn icon-only" title="Game Settings">
+        ⚙️
+      </button>
+
+      <!-- Fullscreen Trigger -->
+      <button id="btn-fullscreen" class="pill-btn icon-only" title="Toggle Fullscreen">
+        ⛶
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Game Stage -->
+  <main class="game-container">
+    <!-- Scoreboard -->
+    <section class="scoreboard">
+      <!-- Player 1 / Left Side -->
+      <div class="player-panel player-1">
+        <div class="player-header">
+          <input type="text" id="p1-name" class="player-name-input" value="Player 1" maxlength="15" title="Click to rename player">
+          <span class="key-hint">[A] or [←]</span>
+        </div>
+        <div class="score-display" id="p1-score">0</div>
+        <div class="score-label">POINTS</div>
+      </div>
+
+      <!-- Center Status & Round Info -->
+      <div class="match-info">
+        <div class="round-badge" id="round-indicator">ROUND 1</div>
+        <div class="timer-display hidden" id="timer-box">
+          <span id="timer-seconds">15</span>s
+        </div>
+        <div class="match-target" id="target-display">First to 10 Wins</div>
+        <button id="btn-reset-scores" class="link-btn" title="Reset current scores">Reset Score</button>
+      </div>
+
+      <!-- Player 2 / Right Side -->
+      <div class="player-panel player-2">
+        <div class="player-header">
+          <input type="text" id="p2-name" class="player-name-input" value="Player 2" maxlength="15" title="Click to rename player">
+          <span class="key-hint">[L] or [→]</span>
+        </div>
+        <div class="score-display" id="p2-score">0</div>
+        <div class="score-label">POINTS</div>
+      </div>
+    </section>
+
+    <!-- Match Announcement Banner (Hidden until revealed) -->
+    <div id="reveal-banner" class="reveal-banner hidden">
+      <div class="reveal-content">
+        <span class="reveal-sparkle">✨</span>
+        <span class="reveal-text">Matching Animal: <strong id="reveal-name">Fox</strong></span>
+        <img id="reveal-img" src="animals/fox.png" alt="Match" class="reveal-thumb">
+      </div>
+    </div>
+
+    <!-- The 2 Cards Arena -->
+    <section class="cards-arena">
+      <!-- Card A (Left) -->
+      <div class="card-column">
+        <div class="card-tag player-1-tag">Card A</div>
+        <div class="card-wrapper">
+          <div class="circular-card" id="card-left" data-card-idx="0">
+            <!-- 8 animals injected dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- VS Badge in middle -->
+      <div class="vs-divider">
+        <span class="vs-circle">VS</span>
+      </div>
+
+      <!-- Card B (Right) -->
+      <div class="card-column">
+        <div class="card-tag player-2-tag">Card B</div>
+        <div class="card-wrapper">
+          <div class="circular-card" id="card-right" data-card-idx="1">
+            <!-- 8 animals injected dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manual Winner Input & Action Controls -->
+    <section class="action-dock">
+      <!-- Player 1 Score Button -->
+      <button id="btn-win-p1" class="dock-btn win-btn p1-win-btn">
+        <span class="btn-icon">👈</span>
+        <div class="btn-text-group">
+          <span class="btn-main"><span id="btn-p1-label">Player 1</span> Won!</span>
+          <span class="btn-sub">+1 Point & Next Card</span>
+        </div>
+        <span class="btn-shortcut">Key: A</span>
+      </button>
+
+      <!-- Center Action: Reveal / Next -->
+      <div class="center-actions">
+        <button id="btn-reveal" class="dock-btn secondary-btn" title="Reveal the shared matching animal">
+          <span class="btn-icon">👁️</span>
+          <span>Reveal Match</span>
+        </button>
+
+        <button id="btn-next" class="dock-btn next-btn" title="Deal two new cards">
+          <span class="btn-icon">🔄</span>
+          <span>Next Cards</span>
+          <span class="btn-shortcut">Space</span>
+        </button>
+      </div>
+
+      <!-- Player 2 Score Button -->
+      <button id="btn-win-p2" class="dock-btn win-btn p2-win-btn">
+        <span class="btn-icon">👉</span>
+        <div class="btn-text-group">
+          <span class="btn-main"><span id="btn-p2-label">Player 2</span> Won!</span>
+          <span class="btn-sub">+1 Point & Next Card</span>
+        </div>
+        <span class="btn-shortcut">Key: L</span>
+      </button>
+    </section>
+
+    <!-- Bottom Play Hint -->
+    <footer class="game-footer">
+      <p>💡 <em>Look closely! There is always <strong>exactly ONE</strong> animal shared between Card A and Card B. Spot it in real life, shout it, and press who won! (Or tap the matching animal directly!)</em></p>
+    </footer>
+  </main>
+
+  <!-- Victory Modal -->
+  <div id="victory-modal" class="modal-backdrop hidden">
+    <div class="modal-card victory-card">
+      <div class="trophy-bounce">🏆</div>
+      <h2 id="victory-title">PLAYER 1 WINS!</h2>
+      <p class="victory-score" id="victory-detail">Final Score: 10 - 6 in 14 Rounds</p>
+      <div class="victory-actions">
+        <button id="btn-rematch" class="primary-action-btn">Play Rematch</button>
+        <button id="btn-close-victory" class="secondary-action-btn">Keep Playing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rules & Animal Encyclopedia Modal -->
+  <div id="rules-modal" class="modal-backdrop hidden">
+    <div class="modal-card wide-card">
+      <div class="modal-header">
+        <h2>📖 Game Rules & 57 Chibi Animals</h2>
+        <button class="modal-close" id="btn-close-rules">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="rules-summary-box">
+          <h3>The Golden Rule</h3>
+          <p>Between <strong>any two cards</strong> in the entire 57-card deck, there is <strong>always exactly ONE shared animal</strong> (same species and color, though size and orientation vary!). Spot it first to score!</p>
+        </div>
+
+        <h3 class="section-title">All 57 Chibi Animals (Visual Dictionary)</h3>
+        <p class="section-sub">Need to settle a disputed animal name during the game? Check here:</p>
+        <div id="encyclopedia-grid" class="encyclopedia-grid">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>⚙️ Game Settings</h2>
+        <button class="modal-close" id="btn-close-settings">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-item">
+          <label for="setting-target">Target Score to Win:</label>
+          <select id="setting-target" class="custom-select">
+            <option value="5">First to 5 Points</option>
+            <option value="10" selected>First to 10 Points</option>
+            <option value="15">First to 15 Points</option>
+            <option value="20">First to 20 Points</option>
+            <option value="0">Free Play (Unlimited)</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <label for="setting-timer">Round Countdown Timer:</label>
+          <select id="setting-timer" class="custom-select">
+            <option value="0" selected>Disabled (Relaxed Play)</option>
+            <option value="10">10 Seconds (Intense!)</option>
+            <option value="15">15 Seconds (Standard)</option>
+            <option value="30">30 Seconds (Casual)</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <label for="setting-autonext">Auto-Next on Point:</label>
+          <input type="checkbox" id="setting-autonext" checked>
+        </div>
+
+        <div class="setting-item">
+          <label for="setting-volume">Master Volume:</label>
+          <input type="range" id="setting-volume" min="0" max="1" step="0.05" value="0.7">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
