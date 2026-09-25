@@ -41,6 +41,7 @@
 
       <!-- Music Button with Soundwave Bars -->
       <button id="btn-music" class="pill-btn music-btn" title="Toggle Kahoot-Style Background Music" aria-label="Toggle Background Music">
+        <span class="music-icon">🎵</span>
         <div class="sound-bars" id="music-bars">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -262,6 +263,17 @@
         <div class="setting-item">
           <label for="setting-volume">Master Volume:</label>
           <input type="range" id="setting-volume" min="0" max="1" step="0.05" value="0.7">
+        </div>
+
+        <div class="setting-item">
+          <label for="setting-sfx-check">Sound Effects (SFX):</label>
+          <input type="checkbox" id="setting-sfx-check" checked>
+        </div>
+
+        <div class="setting-item" style="padding-top: 16px; border-bottom: none;">
+          <button id="btn-open-rules-settings" class="pill-btn" style="width: 100%; justify-content: center; background: #EFF6FF; border-color: #BFDBFE; color: #1D4ED8; font-weight: 700;">
+            📖 Open Game Rules & Dictionary
+          </button>
         </div>
       </div>
     </div>
