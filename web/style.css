@@ -1227,3 +1227,110 @@ body {
   font-weight: 700;
   animation: modal-in 0.2s ease-out;
 }
+
+/* --- Game Mode Selector --- */
+.mode-badge-wrap {
+  margin-bottom: 2px;
+}
+
+.mode-select-input {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #4338CA;
+  background: #EEF2FF;
+  border: 1.5px solid #C7D2FE;
+  border-radius: 999px;
+  padding: 3px 8px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.mode-select-input:hover {
+  background: #E0E7FF;
+  border-color: #818CF8;
+}
+
+.timer-display.stopwatch {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #4F46E5;
+  background: #EEF2FF;
+  animation: none;
+  letter-spacing: 0.5px;
+}
+
+/* Solo Mode Layout Adjustments */
+.solo-mode .p2-win-btn {
+  display: none !important;
+}
+
+.solo-mode .p1-win-btn {
+  grid-column: 1 / -1 !important;
+}
+
+/* --- Printable PDFs Modal --- */
+.pdf-download-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pdf-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 16px;
+  transition: all 0.2s;
+}
+
+.pdf-card:hover {
+  background: #FFFFFF;
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.pdf-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pdf-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pdf-info h4 {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  color: var(--text-main);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.pdf-info p {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.pdf-dl-btn {
+  background: #10B981;
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  text-decoration: none;
+  border: none;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.pdf-dl-btn:hover {
+  background: #059669;
+}
