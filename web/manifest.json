@@ -1,0 +1,19 @@
+{
+  "name": "Spot The Chibi: Quick Match Game",
+  "short_name": "SpotTheChibi",
+  "description": "57-card symbol spotting party game for 1-2 players with 5 rich themes and printable PDFs.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F8FAFC",
+  "theme_color": "#4F46E5",
+  "icons": [
+    {
+      "src": "animals/panda.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

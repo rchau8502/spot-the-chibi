@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Chibi Animal Spot It! • Online Party Game</title>
-  <meta name="description" content="Play the 57-card chibi animal matching game online! 8 symbols per card, exactly 1 match between every pair.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Spot The Chibi: Quick Match Game</title>
+  <meta name="description" content="Play the 57-card matching party game online! 8 symbols per card, exactly 1 match between every pair.">
   <link rel="icon" href="animals/panda.png" type="image/png">
+  <link rel="apple-touch-icon" href="animals/panda.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Spot The Chibi">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -26,11 +32,13 @@
 
     <div class="header-controls">
       <!-- Theme Switcher -->
-      <div class="theme-picker" title="Switch Theme (Animals / Food / Superheroes)">
+      <div class="theme-picker" title="Switch Theme (57 Symbols Each)">
         <select id="theme-select" class="theme-select-input" aria-label="Select Game Theme">
           <option value="animals" selected>🐾 Animals</option>
           <option value="food">🍕 Food</option>
           <option value="heroes">🦸 Heroes</option>
+          <option value="space">🚀 Space</option>
+          <option value="vehicles">🚗 Vehicles</option>
         </select>
       </div>
 
@@ -90,10 +98,17 @@
 
       <!-- Center Status & Round Info -->
       <div class="match-info">
+        <div class="mode-badge-wrap">
+          <select id="game-mode-select" class="mode-select-input" aria-label="Game Mode" title="Change Game Mode">
+            <option value="versus" selected>👥 2-Player Versus</option>
+            <option value="solo">⏱️ Solo Time Attack</option>
+            <option value="deck">🃏 57-Card Deck Run</option>
+          </select>
+        </div>
         <div class="round-badge" id="round-indicator">ROUND 1</div>
         <div class="instance-tag" id="instance-tag" title="Your unique private game instance">Instance #...</div>
         <div class="timer-display hidden" id="timer-box">
-          <span id="timer-seconds">15</span>s
+          <span id="timer-seconds">00:00.0</span>
         </div>
         <div class="match-target" id="target-display">First to 10 Wins</div>
         <button id="btn-reset-scores" class="link-btn" title="Reset current scores">Reset Score</button>
@@ -270,10 +285,75 @@
           <input type="checkbox" id="setting-sfx-check" checked>
         </div>
 
-        <div class="setting-item" style="padding-top: 16px; border-bottom: none;">
+        <div class="setting-item">
+          <label for="setting-haptics-check">Haptic Touch Feedback:</label>
+          <input type="checkbox" id="setting-haptics-check" checked>
+        </div>
+
+        <div class="setting-item" style="padding-top: 12px; border-bottom: none; display: flex; flex-direction: column; gap: 8px;">
           <button id="btn-open-rules-settings" class="pill-btn" style="width: 100%; justify-content: center; background: #EFF6FF; border-color: #BFDBFE; color: #1D4ED8; font-weight: 700;">
             📖 Open Game Rules & Dictionary
           </button>
+          <button id="btn-open-pdf-modal" class="pill-btn" style="width: 100%; justify-content: center; background: #F0FDF4; border-color: #86EFAC; color: #166534; font-weight: 700;">
+            🖨️ Download Printable Cards (PDF)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Printable PDFs Modal -->
+  <div id="pdf-modal" class="modal-backdrop hidden">
+    <div class="modal-card wide-card">
+      <div class="modal-header">
+        <h2>🖨️ Printable A4 Card Decks (Duplex Ready)</h2>
+        <button class="modal-close" id="btn-close-pdf">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 16px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
+          Print at 100% scale on A4 paper (flip on long edge for double-sided print). Each deck includes 57 circular cards, +3mm bleed protection, alignment crop marks, complete rules, and visual symbol dictionaries:
+        </p>
+        <div class="pdf-download-grid">
+          <div class="pdf-card">
+            <span class="pdf-icon">🐾</span>
+            <div class="pdf-info">
+              <h4>Chibi Animals Deck</h4>
+              <p>57 Cards • 8 Animals/Card • 22 Pages Duplex</p>
+            </div>
+            <a href="pdf/chibi_animal_spot_it_cards_A4_duplex.pdf" download class="pill-btn pdf-dl-btn">Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <span class="pdf-icon">🍕</span>
+            <div class="pdf-info">
+              <h4>Food & Snacks Deck</h4>
+              <p>57 Cards • 8 Snacks/Card • 22 Pages Duplex</p>
+            </div>
+            <a href="pdf/food_spot_it_cards_A4_duplex.pdf" download class="pill-btn pdf-dl-btn">Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <span class="pdf-icon">🦸</span>
+            <div class="pdf-info">
+              <h4>Superheroes Deck</h4>
+              <p>57 Cards • 8 Heroes/Card • 22 Pages Duplex</p>
+            </div>
+            <a href="pdf/superheroes_spot_it_cards_A4_duplex.pdf" download class="pill-btn pdf-dl-btn">Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <span class="pdf-icon">🚀</span>
+            <div class="pdf-info">
+              <h4>Space & Galaxy Deck</h4>
+              <p>57 Cards • 8 Space/Card • 22 Pages Duplex</p>
+            </div>
+            <a href="pdf/space_spot_it_cards_A4_duplex.pdf" download class="pill-btn pdf-dl-btn">Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <span class="pdf-icon">🚗</span>
+            <div class="pdf-info">
+              <h4>Vehicles & Travel Deck</h4>
+              <p>57 Cards • 8 Rides/Card • 22 Pages Duplex</p>
+            </div>
+            <a href="pdf/vehicles_spot_it_cards_A4_duplex.pdf" download class="pill-btn pdf-dl-btn">Download PDF</a>
+          </div>
         </div>
       </div>
     </div>

@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 _tmp_*
+fluent_3d_paths.json

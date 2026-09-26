@@ -1,0 +1,19 @@
+{
+  "appId": "com.chibimatch.spotthechibi",
+  "appName": "Spot The Chibi",
+  "webDir": "web",
+  "server": {
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "always",
+    "scrollEnabled": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#F8FAFC"
+    },
+    "Haptics": {}
+  }
+}

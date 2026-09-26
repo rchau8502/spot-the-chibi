@@ -712,6 +712,480 @@ export const THEMES = {
     "name": "Assassin Dagger"
   }
 ]
+  },
+  space: {
+    id: 'space',
+    name: '🚀 Space & Galaxy',
+    folder: 'space',
+    mascot: 'space/rocket.png',
+    title: 'SPOT THE GALAXY!',
+    symbols: [
+    {
+        "slug": "rocket",
+        "name": "Rocket"
+    },
+    {
+        "slug": "ufo",
+        "name": "UFO"
+    },
+    {
+        "slug": "alien",
+        "name": "Alien"
+    },
+    {
+        "slug": "alien_monster",
+        "name": "Space Beast"
+    },
+    {
+        "slug": "robot",
+        "name": "Robot"
+    },
+    {
+        "slug": "satellite",
+        "name": "Satellite"
+    },
+    {
+        "slug": "antenna",
+        "name": "Dish Antenna"
+    },
+    {
+        "slug": "telescope",
+        "name": "Telescope"
+    },
+    {
+        "slug": "saturn",
+        "name": "Saturn"
+    },
+    {
+        "slug": "earth",
+        "name": "Earth"
+    },
+    {
+        "slug": "sun",
+        "name": "Sun"
+    },
+    {
+        "slug": "full_moon",
+        "name": "Full Moon"
+    },
+    {
+        "slug": "crescent_moon",
+        "name": "Crescent Moon"
+    },
+    {
+        "slug": "comet",
+        "name": "Comet"
+    },
+    {
+        "slug": "shooting_star",
+        "name": "Shooting Star"
+    },
+    {
+        "slug": "star",
+        "name": "Golden Star"
+    },
+    {
+        "slug": "sparkles",
+        "name": "Sparkles"
+    },
+    {
+        "slug": "milky_way",
+        "name": "Milky Way"
+    },
+    {
+        "slug": "astronaut",
+        "name": "Astronaut"
+    },
+    {
+        "slug": "galaxy_vortex",
+        "name": "Vortex"
+    },
+    {
+        "slug": "night_sky",
+        "name": "Starry Sky"
+    },
+    {
+        "slug": "atom",
+        "name": "Atom"
+    },
+    {
+        "slug": "black_hole",
+        "name": "Black Hole"
+    },
+    {
+        "slug": "hourglass",
+        "name": "Hourglass"
+    },
+    {
+        "slug": "compass",
+        "name": "Compass"
+    },
+    {
+        "slug": "gear",
+        "name": "Gear"
+    },
+    {
+        "slug": "battery",
+        "name": "Battery"
+    },
+    {
+        "slug": "plug",
+        "name": "Power Plug"
+    },
+    {
+        "slug": "lightning",
+        "name": "Lightning"
+    },
+    {
+        "slug": "flame",
+        "name": "Rocket Fire"
+    },
+    {
+        "slug": "firecracker",
+        "name": "Dynamite"
+    },
+    {
+        "slug": "crystal_ball",
+        "name": "Plasma Orb"
+    },
+    {
+        "slug": "magic_wand",
+        "name": "Laser Wand"
+    },
+    {
+        "slug": "gem",
+        "name": "Cosmic Gem"
+    },
+    {
+        "slug": "magnet",
+        "name": "Magnet"
+    },
+    {
+        "slug": "radioactive",
+        "name": "Radioactive"
+    },
+    {
+        "slug": "biohazard",
+        "name": "Biohazard"
+    },
+    {
+        "slug": "shield",
+        "name": "Force Field"
+    },
+    {
+        "slug": "flashlight",
+        "name": "Beam Light"
+    },
+    {
+        "slug": "microscope",
+        "name": "Microscope"
+    },
+    {
+        "slug": "dna",
+        "name": "DNA Strand"
+    },
+    {
+        "slug": "test_tube",
+        "name": "Chemical Tube"
+    },
+    {
+        "slug": "petri_dish",
+        "name": "Petri Dish"
+    },
+    {
+        "slug": "light_bulb",
+        "name": "Invention Bulb"
+    },
+    {
+        "slug": "computer_disk",
+        "name": "Minidisc"
+    },
+    {
+        "slug": "floppy_disk",
+        "name": "Data Disk"
+    },
+    {
+        "slug": "laptop",
+        "name": "Terminal Laptop"
+    },
+    {
+        "slug": "joystick",
+        "name": "Flight Stick"
+    },
+    {
+        "slug": "stopwatch",
+        "name": "Countdown Timer"
+    },
+    {
+        "slug": "goggles",
+        "name": "Space Visor"
+    },
+    {
+        "slug": "headphone",
+        "name": "Comms Headset"
+    },
+    {
+        "slug": "wrench",
+        "name": "Repair Wrench"
+    },
+    {
+        "slug": "nut_bolt",
+        "name": "Hardware Bolt"
+    },
+    {
+        "slug": "oil_drum",
+        "name": "Fuel Barrel"
+    },
+    {
+        "slug": "syringe",
+        "name": "Nanobot Syringe"
+    },
+    {
+        "slug": "pill",
+        "name": "Energy Capsule"
+    },
+    {
+        "slug": "magnifier",
+        "name": "Scanner Glass"
+    }
+]
+  },
+  vehicles: {
+    id: 'vehicles',
+    name: '🚗 Vehicles & Travel',
+    folder: 'vehicles',
+    mascot: 'vehicles/car.png',
+    title: 'SPOT THE RIDE!',
+    symbols: [
+    {
+        "slug": "airplane",
+        "name": "Airplane"
+    },
+    {
+        "slug": "helicopter",
+        "name": "Helicopter"
+    },
+    {
+        "slug": "rocket_v",
+        "name": "Rocket Ship"
+    },
+    {
+        "slug": "car",
+        "name": "Red Car"
+    },
+    {
+        "slug": "taxi",
+        "name": "Yellow Taxi"
+    },
+    {
+        "slug": "suv",
+        "name": "Blue SUV"
+    },
+    {
+        "slug": "police_car",
+        "name": "Police Car"
+    },
+    {
+        "slug": "ambulance",
+        "name": "Ambulance"
+    },
+    {
+        "slug": "fire_engine",
+        "name": "Fire Engine"
+    },
+    {
+        "slug": "delivery_truck",
+        "name": "Delivery Truck"
+    },
+    {
+        "slug": "lorry",
+        "name": "Big Rig Lorry"
+    },
+    {
+        "slug": "tractor",
+        "name": "Farm Tractor"
+    },
+    {
+        "slug": "bicycle",
+        "name": "Bicycle"
+    },
+    {
+        "slug": "kick_scooter",
+        "name": "Kick Scooter"
+    },
+    {
+        "slug": "motor_scooter",
+        "name": "Vespa Scooter"
+    },
+    {
+        "slug": "motorcycle",
+        "name": "Motorbike"
+    },
+    {
+        "slug": "minibus",
+        "name": "Van Minibus"
+    },
+    {
+        "slug": "bus",
+        "name": "City Bus"
+    },
+    {
+        "slug": "trolleybus",
+        "name": "Trolley Bus"
+    },
+    {
+        "slug": "train",
+        "name": "Passenger Train"
+    },
+    {
+        "slug": "bullet_train",
+        "name": "Bullet Train"
+    },
+    {
+        "slug": "metro",
+        "name": "Metro Subway"
+    },
+    {
+        "slug": "light_rail",
+        "name": "Light Rail"
+    },
+    {
+        "slug": "tram",
+        "name": "Street Tram"
+    },
+    {
+        "slug": "monorail",
+        "name": "Monorail"
+    },
+    {
+        "slug": "locomotive",
+        "name": "Steam Engine"
+    },
+    {
+        "slug": "ship",
+        "name": "Cargo Ship"
+    },
+    {
+        "slug": "passenger_ship",
+        "name": "Cruise Liner"
+    },
+    {
+        "slug": "ferry",
+        "name": "Car Ferry"
+    },
+    {
+        "slug": "speedboat",
+        "name": "Speedboat"
+    },
+    {
+        "slug": "sailboat",
+        "name": "Sailboat"
+    },
+    {
+        "slug": "canoe",
+        "name": "Canoe Kayak"
+    },
+    {
+        "slug": "anchor",
+        "name": "Ship Anchor"
+    },
+    {
+        "slug": "fuel_pump",
+        "name": "Gas Pump"
+    },
+    {
+        "slug": "traffic_light",
+        "name": "Traffic Signal"
+    },
+    {
+        "slug": "bus_stop",
+        "name": "Bus Stop Sign"
+    },
+    {
+        "slug": "luggage",
+        "name": "Travel Suitcase"
+    },
+    {
+        "slug": "compass_v",
+        "name": "Nav Compass"
+    },
+    {
+        "slug": "map",
+        "name": "World Map"
+    },
+    {
+        "slug": "tent",
+        "name": "Camping Tent"
+    },
+    {
+        "slug": "parachute",
+        "name": "Parachute"
+    },
+    {
+        "slug": "roller_coaster",
+        "name": "Roller Coaster"
+    },
+    {
+        "slug": "ferris_wheel",
+        "name": "Ferris Wheel"
+    },
+    {
+        "slug": "cableway",
+        "name": "Cable Car"
+    },
+    {
+        "slug": "suspension_rail",
+        "name": "Sky Rail"
+    },
+    {
+        "slug": "railway_car",
+        "name": "Train Carriage"
+    },
+    {
+        "slug": "mountain",
+        "name": "Mountain Peak"
+    },
+    {
+        "slug": "statue_liberty",
+        "name": "Statue of Liberty"
+    },
+    {
+        "slug": "tokyo_tower",
+        "name": "Red Tower"
+    },
+    {
+        "slug": "moai",
+        "name": "Moai Statue"
+    },
+    {
+        "slug": "station",
+        "name": "Train Station"
+    },
+    {
+        "slug": "auto_rickshaw",
+        "name": "Tuk Tuk"
+    },
+    {
+        "slug": "motorized_wheelchair",
+        "name": "Electric Wheelchair"
+    },
+    {
+        "slug": "skateboard",
+        "name": "Skateboard"
+    },
+    {
+        "slug": "roller_skate",
+        "name": "Roller Skate"
+    },
+    {
+        "slug": "steering_wheel",
+        "name": "Steering Wheel"
+    },
+    {
+        "slug": "siren",
+        "name": "Emergency Siren"
+    }
+]
   }
 };
 
