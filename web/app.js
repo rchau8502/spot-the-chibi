@@ -14,12 +14,54 @@ const state = {
   sharedSymbol: -1,
   isRevealed: false,
   sfxEnabled: true,
+  hapticsEnabled: localStorage.getItem('chibi_haptics') !== 'false',
   autoNextOnPoint: true,
   timerSeconds: 0,
   timerCurrent: 0,
   timerInterval: null,
   instanceId: '',
-  currentTheme: localStorage.getItem('chibi_theme') || 'animals'
+  currentTheme: localStorage.getItem('chibi_theme') || 'animals',
+  gameMode: 'versus', // 'versus' | 'solo' | 'deck'
+  soloStartTime: 0,
+  soloTimerInterval: null,
+  soloMatches: 0,
+  soloTarget: 10,
+  deckCards: [],
+  deckIndex: 0
+};
+
+// --- Haptic Feedback Engine ---
+const haptics = {
+  impact(style = 'light') {
+    if (!state.hapticsEnabled) return;
+    try {
+      if (navigator.vibrate) {
+        if (style === 'light') navigator.vibrate(25);
+        else navigator.vibrate(45);
+      }
+      if (window.Capacitor?.isPluginAvailable?.('Haptics')) {
+        window.Capacitor.Plugins.Haptics.impact({ style: style.toUpperCase() });
+      }
+    } catch (_) {}
+  },
+  success() {
+    if (!state.hapticsEnabled) return;
+    try {
+      if (navigator.vibrate) navigator.vibrate([30, 25, 40]);
+      if (window.Capacitor?.isPluginAvailable?.('Haptics')) {
+        window.Capacitor.Plugins.Haptics.notification({ type: 'SUCCESS' });
+      }
+    } catch (_) {}
+  },
+  warning() {
+    if (!state.hapticsEnabled) return;
+    try {
+      if (navigator.vibrate) navigator.vibrate([60, 40, 60]);
+      if (window.Capacitor?.isPluginAvailable?.('Haptics')) {
+        window.Capacitor.Plugins.Haptics.notification({ type: 'WARNING' });
+      }
+    } catch (_) {}
+  }
 };
 
 // Layout templates for 8 symbols inside circle (normalized 0-100%)
@@ -118,7 +160,13 @@ const el = {
   rulesGoldenText: document.getElementById('rules-golden-text'),
   encyclopediaTitle: document.getElementById('encyclopedia-title'),
   settingSfxCheck: document.getElementById('setting-sfx-check'),
-  btnOpenRulesSettings: document.getElementById('btn-open-rules-settings')
+  settingHapticsCheck: document.getElementById('setting-haptics-check'),
+  btnOpenRulesSettings: document.getElementById('btn-open-rules-settings'),
+  btnOpenPdfModal: document.getElementById('btn-open-pdf-modal'),
+  pdfModal: document.getElementById('pdf-modal'),
+  btnClosePdf: document.getElementById('btn-close-pdf'),
+  gameModeSelect: document.getElementById('game-mode-select'),
+  gameContainer: document.querySelector('.game-container')
 };
 
 // --- Theme Management ---
@@ -188,27 +236,79 @@ function init() {
   dealNewRound();
 }
 
+// --- Solo Time Attack Timer ---
+function startSoloTimer() {
+  if (state.soloStartTime > 0) return;
+  state.soloStartTime = Date.now();
+  el.timerBox.classList.remove('hidden');
+  el.timerBox.classList.add('stopwatch');
+  
+  if (state.soloTimerInterval) clearInterval(state.soloTimerInterval);
+  state.soloTimerInterval = setInterval(() => {
+    const elapsedMs = Date.now() - state.soloStartTime;
+    const totalSec = elapsedMs / 1000;
+    const mins = Math.floor(totalSec / 60);
+    const secs = (totalSec % 60).toFixed(1);
+    el.timerSeconds.textContent = `${mins > 0 ? mins + 'm ' : ''}${secs.padStart(4, '0')}s`;
+  }, 100);
+}
+
+function stopSoloTimer() {
+  if (state.soloTimerInterval) {
+    clearInterval(state.soloTimerInterval);
+    state.soloTimerInterval = null;
+  }
+}
+
 // --- Deal New Round ---
 function dealNewRound() {
   state.isRevealed = false;
   el.revealBanner.classList.add('hidden');
 
-  // Pick 2 distinct cards from 0..56
-  const total = CARDS.length;
-  let c1 = Math.floor(Math.random() * total);
-  let c2 = Math.floor(Math.random() * total);
-  while (c2 === c1) {
+  let c1, c2;
+  if (state.gameMode === 'deck') {
+    if (state.deckCards.length < 2) {
+      state.deckCards = Array.from({length: CARDS.length}, (_, i) => i).sort(() => Math.random() - 0.5);
+      state.deckIndex = 0;
+    }
+    if (state.deckIndex >= state.deckCards.length - 1) {
+      triggerDeckCompletion();
+      return;
+    }
+    c1 = state.deckCards[state.deckIndex];
+    c2 = state.deckCards[state.deckIndex + 1];
+    state.deckIndex++;
+    const remaining = state.deckCards.length - state.deckIndex;
+    el.targetDisplay.textContent = `Deck: ${remaining} Cards Left`;
+    el.roundIndicator.textContent = `CARD ${state.deckIndex} / 56`;
+  } else if (state.gameMode === 'solo') {
+    const total = CARDS.length;
+    c1 = Math.floor(Math.random() * total);
     c2 = Math.floor(Math.random() * total);
+    while (c2 === c1) c2 = Math.floor(Math.random() * total);
+    el.roundIndicator.textContent = `MATCH ${state.soloMatches + 1} / ${state.soloTarget}`;
+    el.targetDisplay.textContent = `Spot 10 Matches as fast as you can!`;
+    startSoloTimer();
+  } else {
+    // Normal 2P Versus
+    const total = CARDS.length;
+    c1 = Math.floor(Math.random() * total);
+    c2 = Math.floor(Math.random() * total);
+    while (c2 === c1) {
+      c2 = Math.floor(Math.random() * total);
+    }
+    el.roundIndicator.textContent = `ROUND ${state.round}`;
   }
 
   state.currentCard1 = c1;
   state.currentCard2 = c2;
   state.sharedSymbol = getSharedSymbol(c1, c2);
 
-  // Play deal sound
+  // Play deal sound & haptic feedback
   if (state.sfxEnabled) {
     soundEngine.playCardDeal();
   }
+  haptics.impact('light');
 
   // Render both cards
   renderCard(el.cardLeft, CARDS[c1], 0);
@@ -221,11 +321,10 @@ function dealNewRound() {
   el.cardLeft.classList.add('deal-anim');
   el.cardRight.classList.add('deal-anim');
 
-  // Update round indicator
-  el.roundIndicator.textContent = `ROUND ${state.round}`;
-
-  // Reset & start round timer if enabled
-  resetRoundTimer();
+  // Reset & start round timer if enabled in versus mode
+  if (state.gameMode === 'versus') {
+    resetRoundTimer();
+  }
 }
 
 // Render 8 animals inside a card
@@ -292,14 +391,16 @@ function renderCard(cardEl, symbolList, cardSide) {
 function handleAnimalTap(symIdx, side) {
   if (symIdx === state.sharedSymbol) {
     // Correct match tapped!
+    haptics.success();
     revealMatch();
-    if (side === 0) {
+    if (state.gameMode === 'solo') {
       scorePoint(1);
     } else {
-      scorePoint(2);
+      scorePoint(side === 0 ? 1 : 2);
     }
   } else {
     // Wrong animal clicked
+    haptics.warning();
     if (state.sfxEnabled) soundEngine.playBuzzer();
     const cardEl = side === 0 ? el.cardLeft : el.cardRight;
     cardEl.style.transform = 'translateX(-8px)';
@@ -327,12 +428,39 @@ function revealMatch() {
   if (state.sfxEnabled) {
     soundEngine.playRevealSound();
   }
+  haptics.impact('light');
 }
 
 // --- Scoring ---
 function scorePoint(player) {
   revealMatch();
+  haptics.success();
 
+  if (state.gameMode === 'solo') {
+    state.soloMatches++;
+    el.p1Score.textContent = `${state.soloMatches} / ${state.soloTarget}`;
+    bumpScore(el.p1Score);
+
+    if (state.sfxEnabled) {
+      soundEngine.playScorePoint();
+    }
+
+    if (state.soloMatches >= state.soloTarget) {
+      stopSoloTimer();
+      const elapsed = ((Date.now() - state.soloStartTime) / 1000).toFixed(2);
+      triggerSoloVictory(elapsed);
+      return;
+    }
+
+    if (state.autoNextOnPoint) {
+      setTimeout(() => {
+        dealNewRound();
+      }, 700);
+    }
+    return;
+  }
+
+  // Versus or Deck
   if (player === 1) {
     state.p1Score++;
     el.p1Score.textContent = state.p1Score;
@@ -348,7 +476,7 @@ function scorePoint(player) {
   }
 
   // Check victory condition
-  if (state.targetScore > 0) {
+  if (state.gameMode === 'versus' && state.targetScore > 0) {
     if (state.p1Score >= state.targetScore) {
       triggerVictory(1);
       return;
@@ -374,7 +502,57 @@ function bumpScore(element) {
   setTimeout(() => element.classList.remove('bump'), 250);
 }
 
-// --- Victory ---
+// --- Game Mode Switcher ---
+function setGameMode(mode) {
+  state.gameMode = mode;
+  stopSoloTimer();
+  state.soloStartTime = 0;
+  state.soloMatches = 0;
+  state.p1Score = 0;
+  state.p2Score = 0;
+  state.round = 1;
+  el.p1Score.textContent = '0';
+  el.p2Score.textContent = '0';
+
+  if (mode === 'solo') {
+    el.gameContainer.classList.add('solo-mode');
+    el.p1Name.value = 'Matches';
+    el.p1Score.textContent = `0 / ${state.soloTarget}`;
+    el.btnP1Label.textContent = '⚡ Found Match!';
+    const best = localStorage.getItem(`chibi_solo_best_${state.currentTheme}`);
+    el.p2Name.value = 'Record';
+    el.p2Score.textContent = best ? `${best}s` : '--';
+    el.targetDisplay.textContent = `Spot 10 Matches!`;
+    el.timerBox.classList.remove('hidden');
+    el.timerBox.classList.add('stopwatch');
+    el.timerSeconds.textContent = '00:00.0';
+  } else if (mode === 'deck') {
+    el.gameContainer.classList.remove('solo-mode');
+    el.p1Name.value = state.p1Name || 'Player 1';
+    el.p2Name.value = state.p2Name || 'Player 2';
+    el.btnP1Label.textContent = el.p1Name.value;
+    el.btnP2Label.textContent = el.p2Name.value;
+    el.timerBox.classList.add('hidden');
+    el.timerBox.classList.remove('stopwatch');
+    state.deckCards = Array.from({length: CARDS.length}, (_, i) => i).sort(() => Math.random() - 0.5);
+    state.deckIndex = 0;
+    el.targetDisplay.textContent = 'Deck: 57 Cards';
+  } else {
+    // Versus
+    el.gameContainer.classList.remove('solo-mode');
+    el.p1Name.value = state.p1Name || 'Player 1';
+    el.p2Name.value = state.p2Name || 'Player 2';
+    el.btnP1Label.textContent = el.p1Name.value;
+    el.btnP2Label.textContent = el.p2Name.value;
+    el.timerBox.classList.add('hidden');
+    el.timerBox.classList.remove('stopwatch');
+    el.targetDisplay.textContent = state.targetScore > 0 ? `First to ${state.targetScore} Wins` : 'Free Play';
+  }
+
+  dealNewRound();
+}
+
+// --- Victory Celebrations ---
 function triggerVictory(winner) {
   const winnerName = winner === 1 ? state.p1Name : state.p2Name;
   el.victoryTitle.textContent = `🎉 ${winnerName.toUpperCase()} WINS!`;
@@ -384,7 +562,56 @@ function triggerVictory(winner) {
   if (state.sfxEnabled) {
     soundEngine.playVictoryFanfare();
   }
+  haptics.success();
+  fireConfetti();
+}
 
+function triggerSoloVictory(elapsed) {
+  const key = `chibi_solo_best_${state.currentTheme}`;
+  const prevBestStr = localStorage.getItem(key);
+  const prevBest = prevBestStr ? parseFloat(prevBestStr) : 9999;
+  const currentNum = parseFloat(elapsed);
+  const isNewRecord = currentNum < prevBest;
+
+  if (isNewRecord) {
+    localStorage.setItem(key, elapsed);
+    el.p2Score.textContent = `${elapsed}s`;
+  }
+
+  let rank = '🎯 Sharp Eye';
+  let rankDesc = 'Solid spotting reflexes!';
+  if (currentNum < 15) {
+    rank = '⚡ Lightning Master (Rank S+)';
+    rankDesc = 'Unbelievable reaction speed!';
+  } else if (currentNum < 25) {
+    rank = '🚀 Expert Spotter (Rank A)';
+    rankDesc = 'Fast & accurate reflexes!';
+  } else if (currentNum < 35) {
+    rank = '⭐ Quick Spotter (Rank B)';
+    rankDesc = 'Great visual acuity!';
+  }
+
+  el.victoryTitle.textContent = isNewRecord ? '🏆 NEW RECORD!' : '🎉 CHALLENGE COMPLETE!';
+  el.victoryDetail.innerHTML = `
+    <div style="font-size: 1.8rem; font-weight: 800; color: #4F46E5; margin: 8px 0;">${elapsed}s</div>
+    <div style="font-size: 1.05rem; font-weight: 700; color: #1E293B;">${rank}</div>
+    <p style="color: #64748B; font-size: 0.85rem; margin-top: 4px;">${rankDesc} (${state.soloTarget} matches found)</p>
+  `;
+  el.victoryModal.classList.remove('hidden');
+
+  if (state.sfxEnabled) {
+    soundEngine.playVictoryFanfare();
+  }
+  haptics.success();
+  fireConfetti();
+}
+
+function triggerDeckCompletion() {
+  el.victoryTitle.textContent = '🃏 57-CARD DECK CLEARED!';
+  el.victoryDetail.textContent = `All 57 cards have been played! Final Score: ${state.p1Score} - ${state.p2Score}`;
+  el.victoryModal.classList.remove('hidden');
+  if (state.sfxEnabled) soundEngine.playVictoryFanfare();
+  haptics.success();
   fireConfetti();
 }
 
@@ -650,12 +877,50 @@ function setupEventListeners() {
     resetScores();
   });
 
-  el.btnCloseVictory.addEventListener('click', () => {
-    el.victoryModal.classList.add('hidden');
-  });
+  if (el.btnCloseVictory) {
+    el.btnCloseVictory.addEventListener('click', () => {
+      el.victoryModal.classList.add('hidden');
+    });
+  }
+
+  // Game Mode Selector
+  if (el.gameModeSelect) {
+    el.gameModeSelect.addEventListener('change', (e) => {
+      soundEngine.ensureContext();
+      haptics.impact('light');
+      setGameMode(e.target.value);
+    });
+  }
+
+  // Haptics Toggle
+  if (el.settingHapticsCheck) {
+    el.settingHapticsCheck.checked = state.hapticsEnabled;
+    el.settingHapticsCheck.addEventListener('change', (e) => {
+      state.hapticsEnabled = e.target.checked;
+      try {
+        localStorage.setItem('chibi_haptics', state.hapticsEnabled ? 'true' : 'false');
+      } catch (_) {}
+      if (state.hapticsEnabled) haptics.impact('light');
+    });
+  }
+
+  // PDF Modal
+  if (el.btnOpenPdfModal && el.pdfModal) {
+    el.btnOpenPdfModal.addEventListener('click', () => {
+      soundEngine.ensureContext();
+      el.settingsModal.classList.add('hidden');
+      el.pdfModal.classList.remove('hidden');
+    });
+  }
+
+  if (el.btnClosePdf && el.pdfModal) {
+    el.btnClosePdf.addEventListener('click', () => {
+      el.pdfModal.classList.add('hidden');
+    });
+  }
 
   // Close modals on background click
-  [el.rulesModal, el.settingsModal, el.victoryModal, el.qrModal].forEach(modal => {
+  [el.rulesModal, el.settingsModal, el.victoryModal, el.qrModal, el.pdfModal].forEach(modal => {
     if (modal) {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) modal.classList.add('hidden');
@@ -727,6 +992,13 @@ function setupEventListeners() {
   window.addEventListener('click', () => {
     soundEngine.ensureContext();
   }, { once: true });
+
+  // PWA Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
 }
 
 // Start
