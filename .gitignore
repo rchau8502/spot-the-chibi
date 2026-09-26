@@ -5,3 +5,4 @@ _tmp_*
 fluent_3d_paths.json
 node_modules/
 build/
+exportOptions*.plist
