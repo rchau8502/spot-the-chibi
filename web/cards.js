@@ -1186,6 +1186,480 @@ export const THEMES = {
         "name": "Emergency Siren"
     }
 ]
+  },
+  fantasy: {
+    id: 'fantasy',
+    name: '🧙 Magic & Fantasy',
+    folder: 'fantasy',
+    mascot: 'fantasy/dragon.png',
+    title: 'SPOT THE FANTASY!',
+    symbols: [
+    {
+        "slug": "dragon",
+        "name": "Dragon"
+    },
+    {
+        "slug": "wizard",
+        "name": "Wizard"
+    },
+    {
+        "slug": "fairy",
+        "name": "Fairy"
+    },
+    {
+        "slug": "unicorn",
+        "name": "Unicorn"
+    },
+    {
+        "slug": "phoenix",
+        "name": "Phoenix"
+    },
+    {
+        "slug": "castle",
+        "name": "Castle"
+    },
+    {
+        "slug": "magic_wand",
+        "name": "Magic Wand"
+    },
+    {
+        "slug": "potion",
+        "name": "Potion"
+    },
+    {
+        "slug": "sword",
+        "name": "Sword"
+    },
+    {
+        "slug": "shield",
+        "name": "Shield"
+    },
+    {
+        "slug": "crystal_ball",
+        "name": "Crystal Ball"
+    },
+    {
+        "slug": "spellbook",
+        "name": "Spellbook"
+    },
+    {
+        "slug": "crown",
+        "name": "Crown"
+    },
+    {
+        "slug": "goblin",
+        "name": "Goblin"
+    },
+    {
+        "slug": "knight",
+        "name": "Knight"
+    },
+    {
+        "slug": "bow_arrow",
+        "name": "Bow & Arrow"
+    },
+    {
+        "slug": "gem",
+        "name": "Gem"
+    },
+    {
+        "slug": "treasure_chest",
+        "name": "Treasure"
+    },
+    {
+        "slug": "ring",
+        "name": "Magic Ring"
+    },
+    {
+        "slug": "scroll",
+        "name": "Ancient Scroll"
+    },
+    {
+        "slug": "cauldron",
+        "name": "Cauldron"
+    },
+    {
+        "slug": "elf",
+        "name": "Elf"
+    },
+    {
+        "slug": "mermaid",
+        "name": "Mermaid"
+    },
+    {
+        "slug": "genie",
+        "name": "Genie"
+    },
+    {
+        "slug": "fireball",
+        "name": "Fireball"
+    },
+    {
+        "slug": "lightning",
+        "name": "Lightning"
+    },
+    {
+        "slug": "cloak",
+        "name": "Magic Cloak"
+    },
+    {
+        "slug": "amulet",
+        "name": "Amulet"
+    },
+    {
+        "slug": "chalice",
+        "name": "Golden Chalice"
+    },
+    {
+        "slug": "torch",
+        "name": "Torch"
+    },
+    {
+        "slug": "dungeon_key",
+        "name": "Dungeon Key"
+    },
+    {
+        "slug": "portal",
+        "name": "Magic Portal"
+    },
+    {
+        "slug": "helmet",
+        "name": "Knight Helmet"
+    },
+    {
+        "slug": "axe",
+        "name": "Battleaxe"
+    },
+    {
+        "slug": "dagger",
+        "name": "Dagger"
+    },
+    {
+        "slug": "magic_orb",
+        "name": "Mystic Orb"
+    },
+    {
+        "slug": "runestone",
+        "name": "Runestone"
+    },
+    {
+        "slug": "magic_hat",
+        "name": "Sorcerer Hat"
+    },
+    {
+        "slug": "hourglass",
+        "name": "Time Hourglass"
+    },
+    {
+        "slug": "dragon_egg",
+        "name": "Dragon Egg"
+    },
+    {
+        "slug": "gargoyle",
+        "name": "Stone Gargoyle"
+    },
+    {
+        "slug": "troll",
+        "name": "Troll"
+    },
+    {
+        "slug": "zombie",
+        "name": "Undead Zombie"
+    },
+    {
+        "slug": "ghost",
+        "name": "Phantom Ghost"
+    },
+    {
+        "slug": "magic_mirror",
+        "name": "Magic Mirror"
+    },
+    {
+        "slug": "crystal_shard",
+        "name": "Crystal Shard"
+    },
+    {
+        "slug": "mystic_eye",
+        "name": "Mystic Eye"
+    },
+    {
+        "slug": "magic_spark",
+        "name": "Magic Spark"
+    },
+    {
+        "slug": "golden_goblet",
+        "name": "Goblet"
+    },
+    {
+        "slug": "sorceress",
+        "name": "Sorceress"
+    },
+    {
+        "slug": "alchemist_flask",
+        "name": "Alchemist Flask"
+    },
+    {
+        "slug": "golden_apple",
+        "name": "Golden Apple"
+    },
+    {
+        "slug": "compass",
+        "name": "Rune Compass"
+    },
+    {
+        "slug": "bat",
+        "name": "Dungeon Bat"
+    },
+    {
+        "slug": "spider",
+        "name": "Cave Spider"
+    },
+    {
+        "slug": "skull",
+        "name": "Ancient Skull"
+    },
+    {
+        "slug": "sparkles",
+        "name": "Starlight Magic"
+    }
+]
+  },
+  ocean: {
+    id: 'ocean',
+    name: '🌊 Ocean Wonders',
+    folder: 'ocean',
+    mascot: 'ocean/dolphin.png',
+    title: 'SPOT THE OCEAN!',
+    symbols: [
+    {
+        "slug": "dolphin",
+        "name": "Dolphin"
+    },
+    {
+        "slug": "whale",
+        "name": "Whale"
+    },
+    {
+        "slug": "octopus",
+        "name": "Octopus"
+    },
+    {
+        "slug": "shark",
+        "name": "Shark"
+    },
+    {
+        "slug": "turtle",
+        "name": "Sea Turtle"
+    },
+    {
+        "slug": "fish",
+        "name": "Tropical Fish"
+    },
+    {
+        "slug": "blowfish",
+        "name": "Blowfish"
+    },
+    {
+        "slug": "jellyfish",
+        "name": "Jellyfish"
+    },
+    {
+        "slug": "coral",
+        "name": "Coral Reef"
+    },
+    {
+        "slug": "crab",
+        "name": "Red Crab"
+    },
+    {
+        "slug": "lobster",
+        "name": "Lobster"
+    },
+    {
+        "slug": "squid",
+        "name": "Giant Squid"
+    },
+    {
+        "slug": "seal",
+        "name": "Seal"
+    },
+    {
+        "slug": "otter",
+        "name": "Sea Otter"
+    },
+    {
+        "slug": "penguin",
+        "name": "Penguin"
+    },
+    {
+        "slug": "polar_bear",
+        "name": "Polar Bear"
+    },
+    {
+        "slug": "clam_pearl",
+        "name": "Oyster Pearl"
+    },
+    {
+        "slug": "spiral_shell",
+        "name": "Spiral Shell"
+    },
+    {
+        "slug": "submarine",
+        "name": "Submarine"
+    },
+    {
+        "slug": "anchor",
+        "name": "Ship Anchor"
+    },
+    {
+        "slug": "lifebuoy",
+        "name": "Lifebuoy"
+    },
+    {
+        "slug": "sailboat",
+        "name": "Sailboat"
+    },
+    {
+        "slug": "speed_boat",
+        "name": "Speed Boat"
+    },
+    {
+        "slug": "ship",
+        "name": "Ocean Liner"
+    },
+    {
+        "slug": "island",
+        "name": "Tropical Island"
+    },
+    {
+        "slug": "palm_tree",
+        "name": "Palm Tree"
+    },
+    {
+        "slug": "wave",
+        "name": "Ocean Wave"
+    },
+    {
+        "slug": "sun",
+        "name": "Bright Sun"
+    },
+    {
+        "slug": "rainbow",
+        "name": "Sea Rainbow"
+    },
+    {
+        "slug": "water_drop",
+        "name": "Water Droplet"
+    },
+    {
+        "slug": "bubbles",
+        "name": "Sea Bubbles"
+    },
+    {
+        "slug": "iceberg",
+        "name": "Iceberg"
+    },
+    {
+        "slug": "compass",
+        "name": "Ship Compass"
+    },
+    {
+        "slug": "treasure",
+        "name": "Sunken Gold"
+    },
+    {
+        "slug": "gem",
+        "name": "Sea Gem"
+    },
+    {
+        "slug": "map",
+        "name": "Treasure Map"
+    },
+    {
+        "slug": "telescope",
+        "name": "Spyglass"
+    },
+    {
+        "slug": "bell",
+        "name": "Ship Bell"
+    },
+    {
+        "slug": "flag",
+        "name": "Pirate Flag"
+    },
+    {
+        "slug": "swimming",
+        "name": "Swimmer"
+    },
+    {
+        "slug": "surfing",
+        "name": "Surfer"
+    },
+    {
+        "slug": "rowboat",
+        "name": "Canoe"
+    },
+    {
+        "slug": "seagull",
+        "name": "Seagull"
+    },
+    {
+        "slug": "starfish",
+        "name": "Starfish"
+    },
+    {
+        "slug": "sea_sponge",
+        "name": "Sea Sponge"
+    },
+    {
+        "slug": "bucket",
+        "name": "Sand Bucket"
+    },
+    {
+        "slug": "beach_umbrella",
+        "name": "Beach Umbrella"
+    },
+    {
+        "slug": "sunglasses",
+        "name": "Sunglasses"
+    },
+    {
+        "slug": "flippers",
+        "name": "Beach Sandals"
+    },
+    {
+        "slug": "tropical_drink",
+        "name": "Coconut Drink"
+    },
+    {
+        "slug": "ice_pop",
+        "name": "Shaved Ice"
+    },
+    {
+        "slug": "lighthouse",
+        "name": "Lighthouse"
+    },
+    {
+        "slug": "sparkles",
+        "name": "Sun Glimmer"
+    },
+    {
+        "slug": "shrimp",
+        "name": "Pink Shrimp"
+    },
+    {
+        "slug": "fishing_pole",
+        "name": "Fishing Pole"
+    },
+    {
+        "slug": "message_bottle",
+        "name": "Message Bottle"
+    },
+    {
+        "slug": "crown",
+        "name": "Neptune Crown"
+    }
+]
   }
 };
 
