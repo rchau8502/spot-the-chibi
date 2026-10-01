@@ -1334,3 +1334,275 @@ body {
 .pdf-dl-btn:hover {
   background: #059669;
 }
+
+/* ==========================================================================
+   EXPANDED FEATURES: TABLETOP 180°, SURVIVAL BLITZ, HINT & NATIVE iOS PRO
+   ========================================================================== */
+
+/* --- Track Picker in Header --- */
+.track-picker {
+  position: relative;
+  display: inline-flex;
+}
+
+.track-select-input {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #4338CA;
+  background: #EEF2FF;
+  border: 1.5px solid #C7D2FE;
+  border-radius: 999px;
+  padding: 6px 10px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.track-select-input:hover {
+  background: #E0E7FF;
+  border-color: #818CF8;
+}
+
+/* --- Tabletop Quick Toggle Button --- */
+.tabletop-toggle-btn {
+  background: #FDF4FF;
+  border-color: #F0ABFC;
+  color: #A21CAF;
+  font-weight: 700;
+}
+
+.tabletop-toggle-btn:hover {
+  background: #FAE8FF;
+  border-color: #E879F9;
+}
+
+.tabletop-active .tabletop-toggle-btn {
+  background: #9333EA;
+  color: #FFFFFF;
+  border-color: #7E22CE;
+}
+
+/* --- iOS Pro Badge --- */
+.logo-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ios-badge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  color: #FFFFFF;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
+}
+
+/* --- Tabletop Head-to-Head Mode (180° Inverted PvP) --- */
+.tabletop-top-dock {
+  display: none;
+  width: 100%;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border-bottom: 1.5px solid #F1F5F9;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transform: rotate(180deg);
+  z-index: 50;
+}
+
+.tabletop-active .tabletop-top-dock {
+  display: flex;
+  justify-content: center;
+}
+
+.tabletop-btn {
+  width: 100%;
+  max-width: 420px;
+  height: 60px;
+}
+
+.tabletop-active #p2-panel {
+  transform: rotate(180deg);
+}
+
+.tabletop-active #card-col-right {
+  transform: rotate(180deg);
+}
+
+.tabletop-active #btn-win-p2 {
+  display: none !important;
+}
+
+.tabletop-active .action-dock {
+  grid-template-columns: 1fr auto !important;
+}
+
+/* --- Anti-Spam Penalty Lockout --- */
+.penalty-lock {
+  pointer-events: none !important;
+  opacity: 0.45 !important;
+  filter: grayscale(0.8) !important;
+  animation: penalty-shake 0.4s ease-in-out !important;
+  position: relative;
+}
+
+.penalty-lock::after {
+  content: '❌ LOCKED';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(239, 68, 68, 0.88);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  border-radius: inherit;
+  z-index: 10;
+}
+
+@keyframes penalty-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* --- Survival Blitz HUD --- */
+.survival-hud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 240px;
+  gap: 4px;
+  margin: 2px 0;
+}
+
+.survival-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: #E2E8F0;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.survival-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #10B981, #059669);
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+.survival-bar.critical {
+  background: linear-gradient(90deg, #EF4444, #DC2626) !important;
+}
+
+.survival-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.survival-time {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #1E293B;
+}
+
+.streak-badge {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #D97706;
+  background: #FEF3C7;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #FDE68A;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.streak-badge.fire {
+  color: #DC2626;
+  background: #FEE2E2;
+  border-color: #FCA5A5;
+  transform: scale(1.12);
+}
+
+/* --- Match Point Banner --- */
+.match-point-banner {
+  background: linear-gradient(135deg, #EF4444, #F97316);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  padding: 3px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+  animation: pulse-red 0.8s infinite;
+}
+
+/* --- Hint Button & Glow --- */
+.hint-btn {
+  background: #FEF3C7;
+  border-color: #FCD34D;
+  color: #B45309;
+}
+
+.hint-btn:hover {
+  background: #FDE68A;
+  border-color: #F59E0B;
+}
+
+.is-hint-pulse {
+  animation: hint-glow 0.8s infinite alternate !important;
+  border-radius: 50%;
+}
+
+@keyframes hint-glow {
+  0% { filter: drop-shadow(0 0 2px #3B82F6) scale(1); }
+  100% { filter: drop-shadow(0 0 16px #60A5FA) scale(1.22); }
+}
+
+/* --- Native iOS Platform Polish --- */
+body.ios-platform {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Display", sans-serif;
+  touch-action: manipulation;
+}
+
+body.ios-platform .app-header {
+  padding-top: max(8px, env(safe-area-inset-top));
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+body.ios-platform .game-container {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+body.ios-platform .circular-card {
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.12);
+}
+
+body.ios-platform .dock-btn {
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.1);
+}
+
+body.ios-platform .dock-btn:active {
+  transform: scale(0.95);
+}
