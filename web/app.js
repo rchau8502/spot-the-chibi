@@ -191,8 +191,7 @@ const el = {
   survivalBar: document.getElementById('survival-bar'),
   survivalTimerText: document.getElementById('survival-timer-text'),
   streakBadge: document.getElementById('streak-badge'),
-  matchPointBanner: document.getElementById('match-point-banner'),
-  iosBadge: document.getElementById('ios-badge')
+  matchPointBanner: document.getElementById('match-point-banner')
 };
 
 // --- Theme Management ---
@@ -258,7 +257,6 @@ function detectIOSPlatform() {
   const isIOS = window.Capacitor?.isNativePlatform?.() || /iPad|iPhone|iPod/.test(navigator.userAgent);
   if (isIOS) {
     document.body.classList.add('ios-platform');
-    if (el.iosBadge) el.iosBadge.classList.remove('hidden');
   }
 }
 
