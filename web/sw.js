@@ -1,12 +1,12 @@
 // Spot The Chibi Service Worker for Offline Play
-const CACHE_NAME = 'spot-the-chibi-v1';
+const CACHE_NAME = 'spot-the-chibi-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './style.css',
   './app.js',
   './cards.js',
-  './sound.js',
+  './audio.js',
   './manifest.json',
   './animals/panda.png',
   './qrcode.png'
