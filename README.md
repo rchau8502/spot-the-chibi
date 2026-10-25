@@ -1,81 +1,90 @@
-# Chibi Animal Spot It! (57 Cards Printable Game)
+# Spot The Chibi! (57 Cards Matching Party Game)
 
-A complete, beautifully illustrated printable card game based on the finite projective plane of order 7, $PG(2, 7)$.
+A complete, beautifully illustrated card game and web/iOS application based on the finite projective plane of order 7, $PG(2, 7)$.
 
 ## 🎯 Game Features
-- **57 Unique Cards**: Generated with mathematical precision.
-- **8 Symbols Per Card**: Exactly 8 adorable 3D chibi animals on each card.
-- **57 Total Chibi Animals**: Cat, Dog, Panda, Fox, Koala, Lion, Tiger, Frog, Owl, Dolphin, Unicorn, and 46 more!
-- **The Golden Rule**: Every pair of cards shares **EXACTLY 1** matching animal (verified across all 1,596 pairs).
+- **57 Unique Cards Per Deck**: Generated with mathematical precision.
+- **8 Symbols Per Card**: Exactly 8 adorable 3D symbols per card.
+- **7 Vibrant Themes (399 Total Symbols)**:
+  - 🐾 **Chibi Animals**: Panda, Koala, Lion, Tiger, Dolphin, Unicorn, Cat, Dog...
+  - 🍕 **Food & Snacks**: Pizza, Burger, Taco, Sushi, Donut, Boba, Ice Cream...
+  - 🦸 **Superheroes**: Lightning, Shield, Cape, Mask, Gauntlet, Hammer, City Key...
+  - 🚀 **Space & Galaxy**: Rocket, Astronaut, Alien, Planet, UFO, Nebula, Comet...
+  - 🚗 **Vehicles & Travel**: Sports Car, Airplane, Train, Yacht, Helicopter, Submarine...
+  - 🧙 **Magic & Fantasy**: Dragon, Wizard, Castle, Phoenix, Crystal, Potion, Magic Hat...
+  - 🌊 **Ocean Wonders**: Dolphin, Shark, Coral Reef, Sea Turtle, Octopus, Submarine...
+- **The Golden Rule**: Every pair of cards shares **EXACTLY 1** matching symbol (mathematically verified across all 1,596 pairs).
 - **A4 Safe-Print Layout**: 6 cards per page with generous **16 mm safe margins** from all paper edges, guaranteed **NO CUT-OFF** on any printer.
 - **Print & Cut Guides**: Features both subtle circular cut lines (84 mm / 3.3 in diameter) and precision corner crop marks for straight-edge paper trimmers.
-- **Duplex Card Backs Included**: Symmetrically aligned 10-page card backs PDF for seamless double-sided printing.
+- **Duplex Card Backs Included**: Symmetrically aligned 22-page duplex PDFs for all 7 themes with +3 mm bleed protection for seamless double-sided printing.
 
 ---
 
-## 🌐 Live Website Version (Hosted on Vercel)
+## 🌐 Web & Native App Features
 
-🎮 **Play Online Now**: [**https://web-puce-nu-97.vercel.app**](https://web-puce-nu-97.vercel.app)
-*(Alternative preview link: [https://web-8a12b56ff-richs-projects-646d2c36.vercel.app](https://web-8a12b56ff-richs-projects-646d2c36.vercel.app))*
-
-### Web Version Features:
-- **Real-Time 2-Card Arena**: Shows Card A vs Card B each round with 8 chibi animals each.
-- **Manual Side Winner Input**: In real life, players spot the match and manually tap who won:
-  - `👈 Player 1 Won (+1)` (Hotkey: `A` or `←` or `1`)
-  - `👉 Player 2 Won (+1)` (Hotkey: `L` or `→` or `2`)
-- **Reveal Match Button**: Settle any disputed call instantly by clicking **Reveal Match** to highlight the common animal in glowing gold!
-- **Royalty-Free Kahoot-Style Background Music**: 100% procedural Web Audio API synth engine playing an upbeat, funky 4-on-the-floor groove with sound effects (coin chimes, card deals, victory fanfare).
-- **Customizable Players & Score Target**: Click to rename players, choose target scores (first to 5, 10, 15, or free play), optional round countdown timers, and full-screen party mode.
+- **Multi-Platform Support**:
+  - Web & PWA with offline caching (Service Worker v2)
+  - Native iOS App with full **`UIScene` lifecycle support** (compatible with iOS 18/19/27 & iPadOS 18+)
+- **6 Engaging Game Modes**:
+  - 🥊 **2-Player Versus**: Classic quick-match duel with custom score targets.
+  - 🔄 **Tabletop 180° Face-to-Face**: Player 2's card and win button rotate 180° so two players can duel sitting across each other on an iPad or phone placed flat on a table!
+  - ⏱️ **Solo Time Attack**: Spot 10 matches against the clock with millisecond accuracy and rank grading (S+, A, B, C).
+  - 🔥 **Survival Blitz**: Race against a depleting timer (+2s per correct match), building streak combos.
+  - 🃏 **Full Deck Exploration**: Clear through all 57 cards sequentially with zero repeats.
+  - 🧘 **Zen Practice Mode**: Relaxed discovery with on-demand hint highlighting.
+- **100% Procedural Synthesizer Sound Engine**:
+  - Zero-copyright, royalty-free Web Audio API music in 4 styles: 🎉 Party Beat, 👾 8-Bit Arcade, ☕ Lo-Fi Chill, and ⚔️ PvP Showdown.
+  - Sound effects for deals, correct spots, streaks, penalties, and victory fanfares.
+  - Native haptic feedback integration (`@capacitor/haptics`).
 
 ---
 
-## 📁 Included Files
+## 📁 Included Printable PDFs (A4 Duplex Ready)
 
-| File | Description |
-| :--- | :--- |
-| **`chibi_animal_spot_it_cards_A4_duplex.pdf`** | **⭐ Complete Turnkey Duplex PDF (22 Pages)**<br>• Interleaved Front & Back: Sheet 1 Front, Sheet 1 Back, Sheet 2 Front, Sheet 2 Back...<br>• Perfect millimeter horizontal reflection symmetry for standard **"Flip on Long Edge"** printing.<br>• Includes **+3 mm bleed protection** on the backs to prevent white edges even if printer paper feeds with mechanical tolerance!<br>• Sheets 1–10: Cards #1–#57 + 3 Bonus Cards<br>• Sheet 11: Double-sided Rulebook (Rules on Front, 57 Animal Key on Back) |
-| **`chibi_animal_spot_it_cards_A4.pdf`** | **Single-Sided Master PDF (12 Pages)**<br>• Pages 1–10: All card fronts<br>• Pages 11–12: Rulebook and Animal Key |
-| **`chibi_animal_card_backs_A4.pdf`** | **Card Backs PDF (10 Pages)**<br>• Symmetrically mirrored 6-card grid with bleed for manual-feed printers |
-| **`web/`** | Web application source directory (live on Vercel at [https://web-puce-nu-97.vercel.app](https://web-puce-nu-97.vercel.app)) |
-| **`build_duplex_pdf.py`** | Python script generating the duplex PDF with mathematical horizontal symmetry and bleed |
-| **`duplex_overlay_verification.png`** | Light-table transparency verification image showing perfect concentric front-to-back card alignment |
-| **`preview_cards_page_1.png`** | Image preview of Page 1 (Cards 1–6). |
-| **`preview_cards_page_10.png`** | Image preview of Page 10 (Cards 55–57 + Bonus Cards). |
-| **`preview_rules_page_11.png`** | Image preview of Page 11 (Rulebook & Mini-Games). |
-| **`preview_animal_key_page_12.png`** | Image preview of Page 12 (57 Chibi Animals Visual Key). |
-| **`preview_card_backs.png`** | Image preview of the matching card backs. |
+All 7 complete 22-page master PDFs are included in `PDFs/` and downloadable in the web app under `web/pdf/`:
 
+| Theme Deck | Duplex PDF Path | Details |
+| :--- | :--- | :--- |
+| 🐾 **Chibi Animals** | `PDFs/chibi_animal_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🍕 **Food & Snacks** | `PDFs/food_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🦸 **Superheroes** | `PDFs/superheroes_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🚀 **Space & Galaxy** | `PDFs/space_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🚗 **Vehicles & Travel** | `PDFs/vehicles_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🧙 **Magic & Fantasy** | `PDFs/fantasy_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🌊 **Ocean Wonders** | `PDFs/ocean_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
 
+---
+
+## 📱 iOS App Store Assets
+
+Located in `AppStore_Assets/`:
+- **1024 x 1024 px** High-Res App Store Icon (`AppStore_Icon_1024x1024.png`)
+- **6.7" Screenshots** (1290 x 2796 px) in `Screenshots_6.7_inch/`
+- **6.5" Screenshots** (1284 x 2778 px) in `Screenshots_6.5_inch/`
+- Zero data collection, privacy-first privacy policy (`web/privacy.html`)
 
 ---
 
 ## 🖨️ Printing & Crafting Instructions
 
-1. **Paper Selection**:
-   - For best results, use heavy white cardstock (**200 to 300 gsm**).
-   - If using regular printer paper, consider laminating the sheets before cutting for extra stiffness and durability.
-2. **Printer Settings**:
-   - Paper Size: **A4** (210 mm × 297 mm)
-   - Scaling: **Actual Size** / **100%** (do not shrink or scale, the margins are already pre-calibrated with 16 mm padding).
-3. **Double-Sided Printing (Optional)**:
-   - In your printer dialog, select **Duplex / Double-Sided Printing** and set flip mode to **Flip on Long Edge**.
-   - Print `chibi_animal_spot_it_cards_A4.pdf` (Pages 1–10) with `chibi_animal_card_backs_A4.pdf` on the back.
+1. **Paper Selection**: Use heavy white cardstock (**200 to 300 gsm**), or laminate regular paper before cutting.
+2. **Printer Settings**: Paper Size **A4** (210 mm × 297 mm), Scaling **Actual Size / 100%**.
+3. **Double-Sided Printing**: In your printer dialog, select **Duplex / Double-Sided Printing** and set flip mode to **Flip on Long Edge**.
 4. **Cutting the Cards**:
-   - **Circular Cards**: Cut along the circular grey outlines using craft scissors or an **84 mm (3.3 inch)** circular punch cutter.
-   - **Square Cards**: If you prefer straight cuts, follow the L-shaped corner crop marks with a paper trimmer or ruler & craft knife.
+   - **Circular**: Cut along the circular outlines with craft scissors or an **84 mm (3.3 inch)** punch cutter.
+   - **Square**: Follow the L-shaped corner crop marks with a paper trimmer.
 
 ---
 
 ## 🎮 How to Play (5 Mini-Games)
 
-### Core Rule:
-Between any two cards, there is **always exactly ONE matching animal**. The first player to spot it and call out its name takes action!
+Between any two cards, there is **always exactly ONE matching symbol**. The first player to spot it and call out its name takes action!
 
-1. **The Tower**: Deal 1 card face down to each player. Place the remaining deck face up in the center. All players flip their card simultaneously. The first player to spot and shout the matching animal between their card and the center card takes the center card onto their personal pile. The player with the most cards wins!
-2. **The Well**: Place 1 card face up in the center. Deal all other cards equally to players. Players race to discard cards from their personal stack onto the center Well by spotting matches. First to empty their stack wins!
-3. **Hot Potato**: Each player holds 1 card face up in their palm. When you spot a match with ANY opponent's card, shout it and place your card on theirs! They must now match their new top card to pass the growing stack. The last player left holding all cards loses the round.
-4. **The Poisoned Gift**: Flip cards. Spot a match between the center card and ANY opponent's card to give the center card to them as a penalty. The player with the fewest cards wins!
-5. **Triple Spot**: Lay out 9 cards in a 3×3 grid. Race to find 3 cards that share the exact same animal. Collect the triplet and replace with 3 new cards!
+1. **The Tower**: Deal 1 card face down to each player. Remaining deck face up in center. Players flip together; first to spot a match takes the center card. Most cards wins!
+2. **The Well**: Place 1 card face up in center. Deal all others equally. Race to discard onto the center Well by spotting matches. First to empty hand wins!
+3. **Hot Potato**: Each player holds 1 card face up. Spot a match with ANY opponent's card to pass your card onto theirs. Last player left holding cards loses the round!
+4. **The Poisoned Gift**: Flip cards. Spot a match between the center card and ANY opponent's card to give the center card to them as a penalty. Fewest cards wins!
+5. **Triple Spot**: Lay out 9 cards in a 3×3 grid. Race to find 3 cards that share the exact same symbol. Collect the triplet and replenish 3 new cards!
 
 ---
 
