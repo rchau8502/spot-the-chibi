@@ -48,8 +48,8 @@ class GameSoundEngine {
 
   ensureContext() {
     this.init();
-    if (this.ctx.state === 'suspended') {
-      this.ctx.resume();
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume().catch(() => {});
     }
   }
 
@@ -617,6 +617,12 @@ class GameSoundEngine {
     gain.connect(this.sfxGain);
     osc.start(now);
     osc.stop(now + 0.28);
+  }
+
+  playTick() {
+    this.ensureContext();
+    if (!this.ctx) return;
+    this.synthHat(this.ctx.currentTime, 0.4);
   }
 }
 

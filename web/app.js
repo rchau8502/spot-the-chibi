@@ -902,7 +902,7 @@ function resetRoundTimer() {
       el.timerSeconds.textContent = state.timerCurrent;
 
       if (state.timerCurrent <= 3 && state.timerCurrent > 0) {
-        if (state.sfxEnabled) soundEngine.synthHat(soundEngine.ctx.currentTime, 0.4);
+        if (state.sfxEnabled) soundEngine.playTick();
       }
 
       if (state.timerCurrent <= 0) {
@@ -1318,6 +1318,11 @@ function setupEventListeners() {
         break;
       case 'h':
         triggerHint();
+        break;
+      case 'escape':
+        [el.rulesModal, el.settingsModal, el.victoryModal, el.qrModal, el.pdfModal].forEach(m => {
+          if (m) m.classList.add('hidden');
+        });
         break;
     }
   });
