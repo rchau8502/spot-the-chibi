@@ -1,6 +1,7 @@
 {
   "name": "spot-the-chibi",
   "version": "1.0.0",
+  "type": "module",
   "description": "Spot The Chibi: 57-Symbol Matching Party Game for iOS and Web",
   "private": true,
   "scripts": {

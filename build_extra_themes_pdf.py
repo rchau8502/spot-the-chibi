@@ -69,6 +69,32 @@ THEME_CONFIGS = [
         'bg_header': '#F0F9FF',
         'mascot': 'vehicles/car.png',
         'back_title': 'RIDE!'
+    },
+    {
+        'id': 'fantasy',
+        'name': 'MAGIC & FANTASY',
+        'sub': 'Dragons, Wizards, Castles, Spells & Legendary Beasts',
+        'folder': 'fantasy',
+        'symbols': get_theme_symbols('fantasy'),
+        'title': 'SPOT THE FANTASY! • 57 Cards Printable Game',
+        'pdf_path': 'PDFs/fantasy_spot_it_cards_A4_duplex.pdf',
+        'header_color': '#7C3AED',
+        'bg_header': '#F5F3FF',
+        'mascot': 'fantasy/dragon.png',
+        'back_title': 'FANTASY!'
+    },
+    {
+        'id': 'ocean',
+        'name': 'OCEAN WONDERS',
+        'sub': 'Dolphins, Sharks, Coral Reefs, Ships & Marine Life',
+        'folder': 'ocean',
+        'symbols': get_theme_symbols('ocean'),
+        'title': 'SPOT THE OCEAN! • 57 Cards Printable Game',
+        'pdf_path': 'PDFs/ocean_spot_it_cards_A4_duplex.pdf',
+        'header_color': '#0D9488',
+        'bg_header': '#F0FDFA',
+        'mascot': 'ocean/dolphin.png',
+        'back_title': 'OCEAN!'
     }
 ]
 
@@ -407,6 +433,15 @@ def build_pdf_for_theme(cfg):
     
     c.save()
     print(f"Successfully generated {cfg['pdf_path']}!")
+    import shutil
+    web_pdf_dir = 'web/pdf'
+    os.makedirs(web_pdf_dir, exist_ok=True)
+    dest = os.path.join(web_pdf_dir, os.path.basename(cfg['pdf_path']))
+    shutil.copy2(cfg['pdf_path'], dest)
+    print(f"Copied to {dest}")
 
-for cfg in THEME_CONFIGS:
-    build_pdf_for_theme(cfg)
+if __name__ == '__main__':
+    targets = sys.argv[1:] if len(sys.argv) > 1 else [cfg['id'] for cfg in THEME_CONFIGS]
+    for cfg in THEME_CONFIGS:
+        if cfg['id'] in targets:
+            build_pdf_for_theme(cfg)

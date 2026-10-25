@@ -112,6 +112,8 @@ LIGHTNING = os.path.join(BASE_DIR, "web", "heroes", "lightning.png")
 SHIELD = os.path.join(BASE_DIR, "web", "heroes", "shield.png")
 CAR = os.path.join(BASE_DIR, "web", "vehicles", "racing_car.png")
 PLANE = os.path.join(BASE_DIR, "web", "vehicles", "airplane.png")
+DRAGON = os.path.join(BASE_DIR, "web", "fantasy", "dragon.png")
+DOLPHIN = os.path.join(BASE_DIR, "web", "ocean", "dolphin.png")
 
 # SCREENSHOT 1: "SPOT THE MATCH!"
 def gen_ss1():
@@ -179,22 +181,24 @@ def gen_ss1():
     bg.convert("RGB").save(out_p, "PNG")
     shutil.copy(out_p, os.path.join(DESKTOP_DIR, "1_Spot_The_Match.png"))
 
-# SCREENSHOT 2: "5 VIBRANT THEMES"
+# SCREENSHOT 2: "7 VIBRANT THEMES"
 def gen_ss2():
-    print("Generating Screenshot 2: 5 Rich Themes...")
+    print("Generating Screenshot 2: 7 Rich Themes...")
     bg = create_gradient_bg((15, 23, 42), (59, 130, 246))
-    draw_header(bg, "5 RICH THEMES", "Endless Variety & Fun", "Animals, Food, Superheroes, Space & Vehicles.")
+    draw_header(bg, "7 RICH THEMES", "Endless Variety & Fun", "Animals, Food, Heroes, Space, Vehicles, Fantasy & Ocean.")
     
     themes = [
         ("Animals", PANDA, (244, 63, 94)),
         ("Food", PIZZA, (249, 115, 22)),
         ("Heroes", LIGHTNING, (168, 85, 247)),
         ("Space", ROCKET, (99, 102, 241)),
-        ("Vehicles", CAR, (16, 185, 129))
+        ("Vehicles", CAR, (16, 185, 129)),
+        ("Fantasy", DRAGON, (139, 92, 246)),
+        ("Ocean", DOLPHIN, (14, 165, 233))
     ]
     
-    start_y = 520
-    row_h = 290
+    start_y = 510
+    row_h = 215
     card_w = 1050
     draw = ImageDraw.Draw(bg)
     
@@ -202,21 +206,21 @@ def gen_ss2():
         ry = start_y + i * row_h
         rx = (W - card_w) // 2
         # Row card
-        draw.rounded_rectangle([rx, ry, rx + card_w, ry + 240], radius=36, fill=(255, 255, 255, 230), outline=(255, 255, 255, 255), width=4)
+        draw.rounded_rectangle([rx, ry, rx + card_w, ry + 185], radius=30, fill=(255, 255, 255, 230), outline=(255, 255, 255, 255), width=4)
         
         # Icon
         if os.path.exists(icon_p):
-            im = Image.open(icon_p).convert("RGBA").resize((180, 180), Image.Resampling.LANCZOS)
-            bg.alpha_composite(im, (rx + 40, ry + 30))
+            im = Image.open(icon_p).convert("RGBA").resize((140, 140), Image.Resampling.LANCZOS)
+            bg.alpha_composite(im, (rx + 35, ry + 22))
             
         # Title
-        font_th = get_font(56, bold=True)
-        draw.text((rx + 260, ry + 60), name, fill=(15, 23, 42), font=font_th)
+        font_th = get_font(52, bold=True)
+        draw.text((rx + 220, ry + 35), name, fill=(15, 23, 42), font=font_th)
         
         # 57 Symbols Badge
-        font_badge = get_font(32, bold=True)
-        draw.rounded_rectangle([rx + 260, ry + 135, rx + 490, ry + 185], radius=18, fill=color)
-        draw.text((rx + 280, ry + 142), "57 Symbols", fill=(255, 255, 255), font=font_badge)
+        font_badge = get_font(30, bold=True)
+        draw.rounded_rectangle([rx + 220, ry + 105, rx + 440, ry + 155], radius=16, fill=color)
+        draw.text((rx + 238, ry + 112), "57 Symbols", fill=(255, 255, 255), font=font_badge)
         
     out_p = os.path.join(SCREENSHOTS_DIR, "2_Five_Rich_Themes.png")
     bg.convert("RGB").save(out_p, "PNG")
