@@ -1,6 +1,26 @@
 import { THEMES, ANIMALS, CARDS, getSharedSymbol } from './cards.js';
 import { soundEngine, MUSIC_TRACKS } from './audio.js';
 
+// --- Safe Storage Helper ---
+const storage = {
+  get(key, fallback = null) {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        const val = localStorage.getItem(key);
+        return val !== null ? val : fallback;
+      }
+    } catch (_) {}
+    return fallback;
+  },
+  set(key, val) {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(key, String(val));
+      }
+    } catch (_) {}
+  }
+};
+
 // --- Game State ---
 const state = {
   p1Score: 0,
@@ -14,13 +34,13 @@ const state = {
   sharedSymbol: -1,
   isRevealed: false,
   sfxEnabled: true,
-  hapticsEnabled: localStorage.getItem('chibi_haptics') !== 'false',
+  hapticsEnabled: storage.get('chibi_haptics') !== 'false',
   autoNextOnPoint: true,
   timerSeconds: 0,
   timerCurrent: 0,
   timerInterval: null,
   instanceId: '',
-  currentTheme: localStorage.getItem('chibi_theme') || 'animals',
+  currentTheme: storage.get('chibi_theme', 'animals'),
   gameMode: 'versus', // 'versus' | 'tabletop' | 'survival' | 'solo' | 'zen' | 'deck'
   tabletopActive: false,
   p1Locked: false,
@@ -780,7 +800,7 @@ function setGameMode(mode) {
     el.p1Name.value = 'Matches';
     el.p1Score.textContent = `0 / ${state.soloTarget}`;
     el.btnP1Label.textContent = '⚡ Found Match!';
-    const best = localStorage.getItem(`chibi_solo_best_${state.currentTheme}`);
+    const best = storage.get(`chibi_solo_best_${state.currentTheme}`);
     el.p2Name.value = 'Record';
     el.p2Score.textContent = best ? `${best}s` : '--';
     el.targetDisplay.textContent = `Spot 10 Matches!`;
@@ -829,13 +849,13 @@ function triggerVictory(winner) {
 
 function triggerSoloVictory(elapsed) {
   const key = `chibi_solo_best_${state.currentTheme}`;
-  const prevBestStr = localStorage.getItem(key);
+  const prevBestStr = storage.get(key);
   const prevBest = prevBestStr ? parseFloat(prevBestStr) : 9999;
   const currentNum = parseFloat(elapsed);
   const isNewRecord = currentNum < prevBest;
 
   if (isNewRecord) {
-    localStorage.setItem(key, elapsed);
+    storage.set(key, elapsed);
     el.p2Score.textContent = `${elapsed}s`;
   }
 
@@ -983,9 +1003,7 @@ function setupEventListeners() {
     el.themeSelect.addEventListener('change', (e) => {
       soundEngine.ensureContext();
       state.currentTheme = e.target.value;
-      try {
-        localStorage.setItem('chibi_theme', state.currentTheme);
-      } catch (_) {}
+      storage.set('chibi_theme', state.currentTheme);
       updateThemeUI();
       populateEncyclopedia();
       renderCard(el.cardLeft, CARDS[state.currentCard1], 0);
@@ -1219,9 +1237,7 @@ function setupEventListeners() {
     el.settingHapticsCheck.checked = state.hapticsEnabled;
     el.settingHapticsCheck.addEventListener('change', (e) => {
       state.hapticsEnabled = e.target.checked;
-      try {
-        localStorage.setItem('chibi_haptics', state.hapticsEnabled ? 'true' : 'false');
-      } catch (_) {}
+      storage.set('chibi_haptics', state.hapticsEnabled ? 'true' : 'false');
       if (state.hapticsEnabled) haptics.impact('light');
     });
   }

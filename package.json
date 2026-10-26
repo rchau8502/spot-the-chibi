@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "start": "python3 -m http.server 8080 --directory web",
+    "test": "node test_suite.mjs",
     "cap:sync": "cap sync",
     "cap:ios": "cap open ios"
   },
