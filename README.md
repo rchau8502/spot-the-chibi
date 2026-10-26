@@ -1,5 +1,11 @@
 # Spot The Chibi! (57 Cards Matching Party Game)
 
+[![CI](https://github.com/rchau8502/spot-the-chibi/actions/workflows/ci.yml/badge.svg)](https://github.com/rchau8502/spot-the-chibi/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests: 76 Passed](https://img.shields.io/badge/Tests-76%20Passed-brightgreen.svg)](test_suite.mjs)
+[![PWA Ready](https://img.shields.io/badge/PWA-Ready-blue.svg)](web/manifest.json)
+[![iOS: 1.1 (Build 4)](https://img.shields.io/badge/iOS-1.1%20(Build%204)-purple.svg)](ios/)
+
 A complete, beautifully illustrated card game and web/iOS application based on the finite projective plane of order 7, $PG(2, 7)$.
 
 ## 🎯 Game Features
@@ -73,6 +79,23 @@ Located in `AppStore_Assets/`:
 4. **Cutting the Cards**:
    - **Circular**: Cut along the circular outlines with craft scissors or an **84 mm (3.3 inch)** punch cutter.
    - **Square**: Follow the L-shaped corner crop marks with a paper trimmer.
+
+---
+
+## 🧪 Automated Testing
+
+Run the comprehensive 76-check mathematical invariant and asset integrity test suite:
+
+```bash
+npm test
+```
+
+This verifies:
+- All 57 cards have exactly 8 unique symbols.
+- All 1,596 distinct card pairs share exactly ONE common symbol ($PG(2, 7)$ invariant).
+- All 399 symbol PNG images exist across all 7 themes.
+- All 7 duplex printable A4 PDFs are valid and present.
+- All PWA pre-cached assets and audio synthesizer sound tracks are operational.
 
 ---
 
