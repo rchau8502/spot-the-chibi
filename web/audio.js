@@ -17,7 +17,13 @@ class GameSoundEngine {
     this.masterGain = null;
 
     this.isPlayingMusic = false;
-    this.currentTrack = localStorage.getItem('chibi_music_track') || 'party';
+    let savedTrack = 'party';
+    try {
+      if (typeof localStorage !== 'undefined') {
+        savedTrack = localStorage.getItem('chibi_music_track') || 'party';
+      }
+    } catch (_) {}
+    this.currentTrack = savedTrack;
     this.currentTempo = 126;
     this.step = 0;
     this.timerId = null;
@@ -61,7 +67,11 @@ class GameSoundEngine {
   setTrack(trackId) {
     if (this.currentTrack === trackId) return;
     this.currentTrack = trackId;
-    localStorage.setItem('chibi_music_track', trackId);
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('chibi_music_track', trackId);
+      }
+    } catch (_) {}
     this.updateTrackTempo();
     this.step = 0;
   }
