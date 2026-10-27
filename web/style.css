@@ -1606,3 +1606,51 @@ body.ios-platform .dock-btn {
 body.ios-platform .dock-btn:active {
   transform: scale(0.95);
 }
+
+/* ========================================================
+   iPhone Duo & Foldable Dual-Screen Layout Adaptation
+   Supports W3C Viewport Segments, Fold Regions & Dual Screen
+   ======================================================== */
+@media (horizontal-viewport-segments: 2) {
+  /* Inner display unfolded side-by-side */
+  .cards-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: max(24px, env(viewport-segment-width 0 0, 24px)) !important;
+    align-items: center;
+    justify-items: center;
+  }
+  .card-column {
+    max-width: 90%;
+  }
+}
+
+@media (vertical-viewport-segments: 2) {
+  /* Inner display folded in tent/tabletop posture (top & bottom screens) */
+  .tabletop-active .cards-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: max(20px, env(viewport-segment-height 0 0, 20px)) !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .tabletop-active #card-col-right {
+    order: -1; /* Display Player 2 on the upper screen half, rotated 180° */
+  }
+}
+
+/* Responsive Scaling for iPhone Duo Aspect Ratios (Outer ~1.45, Inner ~1.42) */
+@media screen and (min-width: 600px) and (max-aspect-ratio: 1.55) {
+  .game-container {
+    max-width: 1200px;
+  }
+  .circular-card {
+    max-width: min(44vw, 480px);
+    max-height: min(44vw, 480px);
+  }
+  .tabletop-active .circular-card {
+    max-width: min(40vw, 420px);
+    max-height: min(40vw, 420px);
+  }
+}
+
