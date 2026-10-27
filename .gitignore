@@ -5,4 +5,7 @@ _tmp_*
 fluent_3d_paths.json
 node_modules/
 build/
+DerivedData/
+.Spotlight-V100
+.Trashes
 exportOptions*.plist
