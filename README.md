@@ -61,12 +61,15 @@ All 7 complete 22-page master PDFs are included in `PDFs/` and downloadable in t
 
 ---
 
-## 📱 iOS App Store Assets
+## 📱 iOS App Store Assets & iPhone Duo Ready
 
-Located in `AppStore_Assets/`:
+Located in `AppStore_Assets/` and `~/Desktop/Spot_The_Chibi_AppStore_Assets/`:
 - **1024 x 1024 px** High-Res App Store Icon (`AppStore_Icon_1024x1024.png`)
+- **iPhone Duo Inner Display** (2007 x 2853 px) in `Screenshots_iPhone_Duo_Inner_2007x2853/`
+- **iPhone Duo Outer Display** (1398 x 2034 px) in `Screenshots_iPhone_Duo_Outer_1398x2034/`
 - **6.7" Screenshots** (1290 x 2796 px) in `Screenshots_6.7_inch/`
 - **6.5" Screenshots** (1284 x 2778 px) in `Screenshots_6.5_inch/`
+- **iPhone Duo Adaptive Layout**: Full support for dual-screen foldables, W3C viewport segments (`horizontal-viewport-segments`, `vertical-viewport-segments`), and seamless 180° Tabletop 1v1 play in tent and tabletop postures.
 - Zero data collection, privacy-first privacy policy (`web/privacy.html`)
 
 ---
