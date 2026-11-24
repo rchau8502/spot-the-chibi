@@ -47,17 +47,17 @@ A complete, beautifully illustrated card game and web/iOS application based on t
 
 ## 📁 Included Printable PDFs (A4 Duplex Ready)
 
-All 7 complete 22-page master PDFs live in `web/pdf/` and are downloadable from the web app:
+All 7 complete 22-page master PDFs are attached to the [printables-v1 release](https://github.com/rchau8502/spot-the-chibi/releases/tag/printables-v1) and linked from the web app (so clones stay small):
 
 | Theme Deck | Duplex PDF Path | Details |
 | :--- | :--- | :--- |
-| 🐾 **Chibi Animals** | `web/pdf/chibi_animal_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🍕 **Food & Snacks** | `web/pdf/food_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🦸 **Superheroes** | `web/pdf/superheroes_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🚀 **Space & Galaxy** | `web/pdf/space_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🚗 **Vehicles & Travel** | `web/pdf/vehicles_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🧙 **Magic & Fantasy** | `web/pdf/fantasy_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🌊 **Ocean Wonders** | `web/pdf/ocean_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🐾 **Chibi Animals** | https://github.com/rchau8502/spot-the-chibi/releases/download/printables-v1/chibi_animal_spot_it_cards_A4_duplex.pdf | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🍕 **Food & Snacks** | https://github.com/rchau8502/spot-the-chibi/releases/download/printables-v1/food_spot_it_cards_A4_duplex.pdf | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🦸 **Superheroes** | https://github.com/rchau8502/spot-the-chibi/releases/download/printables-v1/superheroes_spot_it_cards_A4_duplex.pdf | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🚀 **Space & Galaxy** | https://github.com/rchau8502/spot-the-chibi/releases/download/printables-v1/space_spot_it_cards_A4_duplex.pdf | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🚗 **Vehicles & Travel** | https://github.com/rchau8502/spot-the-chibi/releases/download/printables-v1/vehicles_spot_it_cards_A4_duplex.pdf | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🧙 **Magic & Fantasy** | https://github.com/rchau8502/spot-the-chibi/releases/download/printables-v1/fantasy_spot_it_cards_A4_duplex.pdf | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🌊 **Ocean Wonders** | https://github.com/rchau8502/spot-the-chibi/releases/download/printables-v1/ocean_spot_it_cards_A4_duplex.pdf | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
 
 ---
 

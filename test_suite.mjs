@@ -108,14 +108,12 @@ const pdfFiles = [
   'ocean_spot_it_cards_A4_duplex.pdf'
 ];
 
+const PDF_BASE = 'https://github.com/rchau8502/spot-the-chibi/releases/download/printables-v1/';
+const webIndexHtml = fs.readFileSync(path.join(__dirname, 'web', 'index.html'), 'utf8');
 for (const pdf of pdfFiles) {
-  const webPdf = path.join(__dirname, 'web', 'pdf', pdf);
-  assert(fs.existsSync(webPdf), `web/pdf/${pdf} exists`);
-  if (fs.existsSync(webPdf)) {
-    const stat = fs.statSync(webPdf);
-    assert(stat.size > 1024 * 1024, `web/pdf/${pdf} has valid file size (${(stat.size / 1024 / 1024).toFixed(1)} MB)`);
-  }
+  assert(webIndexHtml.includes(PDF_BASE + pdf), `web/index.html links ${pdf} from the printables release`);
 }
+assert(!fs.existsSync(path.join(__dirname, 'web', 'pdf')), 'PDFs are not vendored in web/pdf anymore');
 
 // 4. WEB APP & PWA INTEGRITY
 console.log('\n--- 4. Web & PWA Configuration ---');
@@ -137,7 +135,7 @@ for (const rf of requiredWebFiles) {
 // Verify index.html PDF links
 const indexHtml = fs.readFileSync(path.join(__dirname, 'web/index.html'), 'utf8');
 for (const pdf of pdfFiles) {
-  assert(indexHtml.includes(`pdf/${pdf}`), `index.html contains download link to pdf/${pdf}`);
+  assert(indexHtml.includes(`printables-v1/${pdf}`), `index.html contains release download link for ${pdf}`);
 }
 
 // Verify sw.js pre-cache references
