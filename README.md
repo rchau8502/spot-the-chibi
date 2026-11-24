@@ -47,17 +47,17 @@ A complete, beautifully illustrated card game and web/iOS application based on t
 
 ## 📁 Included Printable PDFs (A4 Duplex Ready)
 
-All 7 complete 22-page master PDFs are included in `PDFs/` and downloadable in the web app under `web/pdf/`:
+All 7 complete 22-page master PDFs live in `web/pdf/` and are downloadable from the web app:
 
 | Theme Deck | Duplex PDF Path | Details |
 | :--- | :--- | :--- |
-| 🐾 **Chibi Animals** | `PDFs/chibi_animal_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🍕 **Food & Snacks** | `PDFs/food_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🦸 **Superheroes** | `PDFs/superheroes_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🚀 **Space & Galaxy** | `PDFs/space_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🚗 **Vehicles & Travel** | `PDFs/vehicles_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🧙 **Magic & Fantasy** | `PDFs/fantasy_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
-| 🌊 **Ocean Wonders** | `PDFs/ocean_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🐾 **Chibi Animals** | `web/pdf/chibi_animal_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🍕 **Food & Snacks** | `web/pdf/food_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🦸 **Superheroes** | `web/pdf/superheroes_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🚀 **Space & Galaxy** | `web/pdf/space_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🚗 **Vehicles & Travel** | `web/pdf/vehicles_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🧙 **Magic & Fantasy** | `web/pdf/fantasy_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
+| 🌊 **Ocean Wonders** | `web/pdf/ocean_spot_it_cards_A4_duplex.pdf` | 57 Cards + 3 Bonus Cards + Duplex Backs + Rules + Visual Key |
 
 ---
 

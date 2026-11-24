@@ -110,9 +110,7 @@ const pdfFiles = [
 
 for (const pdf of pdfFiles) {
   const webPdf = path.join(__dirname, 'web', 'pdf', pdf);
-  const rootPdf = path.join(__dirname, 'PDFs', pdf);
   assert(fs.existsSync(webPdf), `web/pdf/${pdf} exists`);
-  assert(fs.existsSync(rootPdf), `PDFs/${pdf} exists`);
   if (fs.existsSync(webPdf)) {
     const stat = fs.statSync(webPdf);
     assert(stat.size > 1024 * 1024, `web/pdf/${pdf} has valid file size (${(stat.size / 1024 / 1024).toFixed(1)} MB)`);
